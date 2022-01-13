@@ -68,7 +68,8 @@ class DocenteController extends Controller
      */
     public function show($id)
     {
-        
+        $docente = Docente::findOrFail($id);
+        return view('docentes.show', compact('docente'));
     }
 
     /**
