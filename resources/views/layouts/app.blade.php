@@ -22,7 +22,7 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('../css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href=""><i
+                            <a class="nav-link text-white" href="{{ route('inicio') }}"><i
                                 class="fas fa-home"></i></i></a>
                         </li>
                         <li class="nav-item">
