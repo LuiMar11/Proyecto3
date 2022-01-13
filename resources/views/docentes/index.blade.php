@@ -1,41 +1,44 @@
 @extends('layouts.app')
 @section('content')
-    <br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card border-success">
+                <div class="card-border-success">
                     <div class="card-header text-center">
-                        <h3>Lista Docentes</h3>
+                        <h3>Lista docentes</h3>
+                        @can('docentes.create')
+                            <a class="btn btn-success float-right" style="background-color: #53cf48;"
+                                href="{{ route('docentes.create') }}"><i class="fas fa-user-plus"></i></a>
+                        @endcan
                         <br><br>
                         <div class="row justify-content-center">
                             <div class="col-md-8">
-                            <form action="{{ route('docentes.index') }}" method="GET">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                <form action="{{ route('docentes.index') }}" method="GET">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                        </div>
+                                        <input name="texto" id="texto" type="text" class="form-control"
+                                            placeholder="Cédula, Nombres o Apellidos">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-success" type="submit"
+                                                id="search">Buscar</button>
+                                        </div>
                                     </div>
-                                    <input name="texto" id="texto" type="text" class="form-control"
-                                        placeholder="Cédula, Nombres o Apellidos">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-success" type="submit" id="search">Buscar</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
-
-                        @if (session('info'))
+                        {{-- @if (session('info'))
                             <div class="alert alert-primary">{{ session('info') }}</div>
                         @endif
                         @if (session('delete'))
                             <div class="alert alert-danger">{{ session('delete') }}</div>
-                        @endif
+                        @endif --}}
 
                         <table class="table table-hover text-center">
-                            <thead class="table-ligth" style="background-color: #0dac54;">
+                            <thead class="table-ligth" style="background-color: #53cf48;">
                                 <th>Cédula</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
@@ -47,6 +50,7 @@
                                 <th></th>
                                 <th></th>
                             </thead>
+
                             <tbody>
                                 @if (count($docentes) <= 0)
                                     <tr>
@@ -83,17 +87,17 @@
                                     <a href="{{ url('/docentes/' . $docente->id) }}" class="btn btn-primary"><i
                                             class="fas fa-info-circle"></i></a></td> --}}
                                             <td>
-                                                {{-- @can('docentes.edit') --}}
+                                                @can('docentes.edit')
                                                     <a class="btn btn-success"
-                                                        href="{{-- {{ url('/docentes/' . $docente->id . '/edit') }} --}}"><i
+                                                        href="{{ url('/docentes/' . $docente->id . '/edit') }}"><i
                                                             class="fas fa-edit"></i></a>
-                                                {{-- @endcan --}}
+                                                @endcan
                                             </td>
                                             <td>
-                                                {{-- @can('docentes.delete') --}}
-                                                    <form action="{{-- {{ url('/docentes/' . $docente->id) }} --}}" method="POST">
-                                                        {{-- @csrf
-                                                        {{ method_field('DELETE') }} --}}
+                                                @can('docentes.delete')
+                                                    <form action="{{ url('/docentes/' . $docente->id) }}" method="POST">
+                                                        @csrf
+                                                        {{ method_field('DELETE') }}
                                                         <button class="btn btn-danger" type="submit"
                                                             onclick="return confirm('¿Desea eliminar el registro?')"><i
                                                                 class="fas fa-trash"></i></button>
@@ -110,12 +114,10 @@
                         <div class="d-flex justify-content-center">
                             {{ $docentes->links() }}
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 @endsection

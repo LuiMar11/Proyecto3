@@ -1,171 +1,78 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UTS</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{{ asset('img/manzana.png') }}}">
+</head>
+
+<body>
     <div class="container">
+        <br>
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-7 col-lg-5">
                 <div class="card">
-                    <div class="card-header">{{ __('Registro Docentes') }}</div>
-
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('docentes.store') }}">
-                            @csrf
-
-                            <div class="row mb-3">
-                                <label for="cedula"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Documento') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="cedula" type="text" class="form-control @error('cedula') is-invalid @enderror"
-                                        name="cedula" value="{{ old('cedula') }}" required autocomplete="cedula"
-                                        autofocus>
-
-                                    @error('cedula')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="nombre"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="nombre" type="text"
-                                        class="form-control @error('nombre') is-invalid @enderror" name="nombre"
-                                        value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
-
-                                    @error('nombre')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="apellido"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="apellido" type="text"
-                                        class="form-control @error('appellido') is-invalid @enderror" name="apellido"
-                                        value="{{ old('apellido') }}" required autocomplete="apellido" autofocus>
-
-                                    @error('apellido')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="genero"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Género') }}</label>
-                                <div class="col-md-6">
-                                    <select class="form-select" id="genero" name="genero">
-                                        <option value=""></option>
-                                        <option value="Femenino">Femenino</option>
-                                        <option value="Masculino">Masculino</option>
-                                        <option value="Otro">Otro</option>
-                                    </select>
-                                    @error('genero')
-                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="nivel"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nivel académico') }}</label>
-                                <div class="col-md-6">
-                                    <input id="nivel" type="nivel"
-                                        class="form-control @error('nivel') is-invalid @enderror" name="nivel"
-                                        value="{{ old('nivel') }}" required autocomplete="nivel" autofocus>
-
-                                    @error('nivel')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="contratacion"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Contratacion') }}</label>
-                                <div class="col-md-6">
-                                    <select class="form-select" id="contratacion" name="contratacion">
-                                        <option value=""></option>
-                                        <option value="Planta">Planta</option>
-                                        <option value="Tiempo completo">Tiempo completo</option>
-                                        <option value="Medio tiempo">Medio tiempo</option>
-                                        <option value="Catedra">Catedra</option>
-                                        <option value="Otro">Otro</option>
-                                    </select>
-                                    @error('contratacion')
-                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                      {{--       <div class="row mb-3">
-                                <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirmar contraseña') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div> --}}
-
-                            <div class="row mb-0">
-                                <div class="col-md-4 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-check"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="login-wrap p-4 p-md-5">
+                    <h3 class="mb-4 text-center"><b>Agregar Docente</b></h3>
+                    <form action="{{ route('docentes.store') }}" enctype="multipart/form-data" method="POST" class="signup-form">
+                        @csrf
+                        <div class="form-group">
+                            <label class="label" for="cc"><b>Cédula</b></label>
+                            <input id="cedula" name="cedula" type="number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="label" for="email"><b>Nombres</b></label>
+                            <input id="nombre" name="nombre" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="label"><b>Apellidos</b></label>
+                            <input id="apellido" name="apellido" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="label" for="genero"><b>Género</b></label>
+                            <select class="form-control" id="genero" name="genero">
+                                <option defaultValue>---Género---</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="label" for="email"><b>Email</b></label>
+                            <input id="email" name="email" class="form-control" type="email">
+                        </div>
+                        <div class="form-group">
+                            <label class="label" for="profesion"><b>Nivel acádemico</b></label>
+                            <input id="nivel" name="nivel" class="form-control" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="label" for="contratacion"><b>Contratación</b></label>
+                            <select class="form-control" id="contratacion" name="contratacion">
+                                <option defaultValue>---Contratación---</option>
+                                <option value="Planta">Planta</option>
+                                <option value="Tiempo Completo">Tiempo Completo</option>
+                                <option value="Medio Tiempo">Medio Tiempo</option>
+                                <option value="Cátedra">Cátedra</option>
+                            </select>
+                        </div>
+                        <div class="form-group d-flex justify-content-center mt-5">
+                            <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
+                            <a href="{{ route('docentes.index') }}" class="btn btn-danger"><i
+                                    class="fas fa-times"></i></a>
+                        </div>
+                        
+                    </form>
+                </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+
+</body>
+
+</html>
