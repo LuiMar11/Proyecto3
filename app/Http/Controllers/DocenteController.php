@@ -78,9 +78,10 @@ class DocenteController extends Controller
      * @param  \App\Models\Docente  $docente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Docente $docente)
+    public function edit($id)
     {
-        //
+        $docente = Docente::findOrFail($id);
+        return view('docentes.edit', compact('docente'));
     }
 
     /**
@@ -90,9 +91,14 @@ class DocenteController extends Controller
      * @param  \App\Models\Docente  $docente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Docente $docente)
+    public function update(Request $request, $id)
     {
-        //
+        $datos = request()->except('_token', '_method');
+        Docente::where('id', '=', $id)->update($datos);
+        $docente = Docente::findOrFail($id);
+        Alert::success('Docente editado correctamente');
+        return redirect('docentes');
+    
     }
 
     /**
