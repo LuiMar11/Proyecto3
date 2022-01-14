@@ -107,8 +107,10 @@ class DocenteController extends Controller
      * @param  \App\Models\Docente  $docente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Docente $docente)
+    public function destroy($id)
     {
-        //
+        Docente::destroy($id);
+        Alert::success('Docente eliminado correctamente');
+        return redirect('docentes');
     }
 }
