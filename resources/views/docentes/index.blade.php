@@ -1,5 +1,27 @@
 @extends('layouts.app')
 @section('content')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $('.show_confirm').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+                title: `Are you sure you want to delete this record?`,
+                text: "If you delete this, it will be gone forever.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
+    });
+</script>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -30,6 +52,9 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @if (session('delete'))
+                            <div class="alert alert-danger">{{ session('delete') }}</div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-hover text-center">
                                 <thead class="table-ligth" style="background-color: #53cf48;">
@@ -90,14 +115,14 @@
                                                 </td>
                                                 <td>
                                                     @can('docentes.delete')
-                                                        <form action="{{ url('/docentes/' . $docente->id) }}" method="POST">
-                                                            @csrf
-                                                            {{ method_field('DELETE') }}
-                                                            <button class="btn btn-danger" type="submit"
-                                                                onclick="return confirm('¿Desea eliminar el registro?')"><i
-                                                                    class="fas fa-trash"></i></button>
-                                                        </form>
-                                                    @endcan
+                                                    <form action="{{ url('/docentes/' . $docente->id) }}" method="POST">
+                                                        @csrf
+                                                        {{ method_field('DELETE') }}
+                                                        <button class="btn btn-danger" type="submit"
+                                                            onclick="return confirm('¿Desea eliminar el docente?')"><i
+                                                                class="fas fa-trash"></i></button>
+                                                    </form>
+                                                @endcan
 
                                                 </td>
                                             </tr>
@@ -115,5 +140,4 @@
             </div>
         </div>
     </div>
-
 @endsection
