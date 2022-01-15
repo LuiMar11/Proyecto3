@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\EstudianteController;
+use Database\Seeders\EstudianteSeeder;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +26,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Docentes
 Route::resource('docentes', DocenteController::class);
+
+// Estudiantes
+Route::resource('estudiantes', EstudianteController::class);

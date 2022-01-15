@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class EstudianteController extends Controller
 {
@@ -12,9 +14,25 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $texto = $request->get('texto');
+        $estudiantes = DB::table('estudiantes')
+            ->select(
+                'id',
+                'cedula',
+                'nombre',
+                'apellido',
+                'genero',
+                'email',
+                'programa',
+                'estado'
+            )->where('nombre', 'LIKE', '%' . $texto . '%')
+            ->orWhere('apellido', 'LIKE', '%' . $texto . '%')
+            ->orWhere('cedula', 'LIKE', '%' . $texto . '%')
+            ->paginate(10);
+
+        return view('estudiantes.index', compact('estudiantes'));
     }
 
     /**
@@ -24,7 +42,7 @@ class EstudianteController extends Controller
      */
     public function create()
     {
-        //
+        return view('estudiantes.create');
     }
 
     /**
