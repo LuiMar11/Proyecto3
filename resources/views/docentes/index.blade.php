@@ -44,7 +44,7 @@
                                     <th>Email</th>
                                     <th>Nivel Académico</th>
                                     <th>Contratación</th>
-                                    <th></th>
+                                    <th>Información</th>
                                     <th></th>
                                     <th></th>
                                 </thead>

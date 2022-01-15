@@ -35,7 +35,7 @@
                     </div>
                     <div class="card-body justify-content-center">
                         <table class="table table-hover text-center">
-                            <thead class="table-ligth" style="background-color: #0dac54;">
+                            <thead class="table-ligth" style="background-color: #53cf48;">
                                 <th>Cédula</th>
                                 <th>Nombres</th>
                                 <th>Apellidos</th>
@@ -79,7 +79,7 @@
                                                 {{ $estudiante->estado }}
                                             </td>
                                             <td>
-                                                <a class="btn btn-primary" href=""><i class="fas fa-info-circle"></i></a>
+                                                <a class="btn btn-primary" href="{{ url('/estudiantes/' . $estudiante->id) }}"><i class="fas fa-info-circle"></i></a>
                                             </td>
                                             <td>
                                                 @can('estudiantes.edit')

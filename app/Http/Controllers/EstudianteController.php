@@ -6,6 +6,8 @@ use App\Models\Estudiante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Database\Seeders\EstudianteSeeder;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class EstudianteController extends Controller
 {
@@ -53,7 +55,10 @@ class EstudianteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estudiante = request()->except('_token');
+        Estudiante::insert($estudiante);
+        Alert::success('Estudiante inscrito a la base de datos');
+        return redirect('/estudiantes'); 
     }
 
     /**
@@ -62,9 +67,11 @@ class EstudianteController extends Controller
      * @param  \App\Models\Estudiante  $estudiante
      * @return \Illuminate\Http\Response
      */
-    public function show(Estudiante $estudiante)
+    public function show($id)
     {
-        //
+        $estudiante = Estudiante::findOrFail($id);
+        $user = User::all()->where('email',$estudiante->email);
+        return view('estudiantes.show', compact('estudiante','user'));
     }
 
     /**
