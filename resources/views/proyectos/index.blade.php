@@ -35,12 +35,6 @@
                             </div>
                         </div>
                         <div class="card-body justify-content-center">
-                            @if (session('info'))
-                                <div class="alert alert-primary">{{ session('info') }}</div>
-                            @endif
-                            @if (session('delete'))
-                                <div class="alert alert-danger">{{ session('delete') }}</div>
-                            @endif
                             <div class="table-responsive">
                                 <table class="table table-md  text-center">
                                     <thead class="table-ligth" style="background-color: #0dac54;">
@@ -142,7 +136,7 @@
                                                                 @csrf
                                                                 {{ method_field('DELETE') }}
                                                                 <button class="btn btn-danger" type="submit"
-                                                                    onclick="return confirm('¿Desea eliminar el registro?')"><i
+                                                                    onclick="return confirm('¿Desea eliminar el proyecto?')"><i
                                                                         class="fas fa-trash"></i></button>
                                                             </form>
                                                         @endcan

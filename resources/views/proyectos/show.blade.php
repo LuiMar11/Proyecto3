@@ -66,7 +66,7 @@
                             rows="10">{{ $proyecto->observaciones }}</textarea>
 
                         <br>
-                        <div class="d-flex justify-content-rigth mt-5">
+                        <div class="d-flex justify-content-center mt-5">
                             <a href="{{ route('proyectos.index') }}" class="btn btn-danger"><i
                                     class="fas fa-times"></i></a>
                         </div>

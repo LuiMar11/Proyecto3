@@ -96,9 +96,11 @@ class ProyectoController extends Controller
      * @param  \App\Models\Proyecto  $proyecto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proyecto $proyecto)
+    public function edit($id)
     {
-        //
+        $docentes = Docente::all();
+        $proyecto = Proyecto::findOrFail($id);
+        return view('proyectos.edit', compact('proyecto','docentes'));
     }
 
     /**
@@ -108,9 +110,12 @@ class ProyectoController extends Controller
      * @param  \App\Models\Proyecto  $proyecto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proyecto $proyecto)
+    public function update(Request $request, $id)
     {
-        //
+        $proyecto = request()->except('_token', '_method');
+        Proyecto::where('id', '=', $id)->update($proyecto);
+        Alert::success('Se asignaron director y evaluador');
+        return redirect('proyectos');
     }
 
     /**
@@ -119,8 +124,10 @@ class ProyectoController extends Controller
      * @param  \App\Models\Proyecto  $proyecto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proyecto $proyecto)
+    public function destroy($id)
     {
-        //
+        Proyecto::destroy($id);
+        Alert::success('Se elimino el proyecto correctamente');
+        return redirect('proyectos');
     }
 }
