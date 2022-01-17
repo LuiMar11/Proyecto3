@@ -80,9 +80,10 @@ class EstudianteController extends Controller
      * @param  \App\Models\Estudiante  $estudiante
      * @return \Illuminate\Http\Response
      */
-    public function edit(Estudiante $estudiante)
+    public function edit($id)
     {
-        //
+        $estudiante = Estudiante::findOrFail($id);
+        return view('estudiantes.edit',compact('estudiante'));
     }
 
     /**
@@ -92,9 +93,13 @@ class EstudianteController extends Controller
      * @param  \App\Models\Estudiante  $estudiante
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estudiante $estudiante)
+    public function update(Request $request, $id)
     {
-        //
+        $estudiante = request()->except('_token','_method');
+        Estudiante::where('id','=',$id)->update($estudiante);
+        $estudiante = Estudiante::findOrFail($id);
+        Alert::success('Estudiante editado correctamente');
+        return redirect('estudiantes');
     }
 
     /**
@@ -103,8 +108,10 @@ class EstudianteController extends Controller
      * @param  \App\Models\Estudiante  $estudiante
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estudiante $estudiante)
+    public function destroy($id)
     {
-        //
+        Estudiante::destroy($id);
+        Alert::success('Estudiante eliminado correctamente');
+        return redirect('estudiantes');
     }
 }

@@ -95,7 +95,7 @@
                                                         @csrf
                                                         {{ method_field('DELETE') }}
                                                         <button class="btn btn-danger" type="submit"
-                                                            onclick="return confirm('¿Desea eliminar el registro?')"><i
+                                                            onclick="return confirm('¿Desea eliminar el estudiante?')"><i
                                                                 class="fas fa-trash-alt"></i></button>
                                                     </form>
                                                 @endcan
