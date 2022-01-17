@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
+use App\Models\Docente;
+use App\Models\Estudiante;
+use Database\Seeders\EstudianteSeeder;
+use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProyectoController extends Controller
 {
@@ -12,9 +17,38 @@ class ProyectoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $texto = $request->get('texto');
+        $proyectos = DB::table('proyectos')
+            ->select(
+                'id',
+                'codigo',
+                'titulo',
+                'modalidad',
+                'id_estudiante1',
+                'id_estudiante2',
+                'id_estudiante3',
+                'id_director',
+                'id_evaluador',
+                'acta',
+                'estado',
+                'inicio',
+                'fin',
+                'observaciones'
+
+            )->where('titulo', 'LIKE', '%' . $texto . '%')
+            ->orWhere('codigo', 'LIKE', '%' . $texto . '%')
+            ->orWhere('modalidad', 'LIKE', '%' . $texto . '%')
+            ->orWhere('acta', 'LIKE', '%' . $texto . '%')
+            ->orWhere('estado', 'LIKE', '%' . $texto . '%')
+            ->orWhere('inicio', 'LIKE', '%' . $texto . '%')
+            ->paginate(10);
+
+        $docentes = Docente::all();
+        $estudiantes = Estudiante::all();
+
+        return view('proyectos.index', compact('proyectos', 'docentes', 'estudiantes'));
     }
 
     /**
@@ -24,7 +58,8 @@ class ProyectoController extends Controller
      */
     public function create()
     {
-        //
+        $estudiantes = Estudiante::all();
+        return view('proyectos.create', compact('estudiantes'));
     }
 
     /**
@@ -35,7 +70,10 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proyecto = request()->except('_token');
+        Proyecto::insert($proyecto);
+        Alert::success('Modalidad de grado inscrita');
+        return redirect('proyectos');
     }
 
     /**
@@ -44,9 +82,12 @@ class ProyectoController extends Controller
      * @param  \App\Models\Proyecto  $proyecto
      * @return \Illuminate\Http\Response
      */
-    public function show(Proyecto $proyecto)
+    public function show($id)
     {
-        //
+        $estudiantes = Estudiante::all();
+        $docentes = Docente::all();
+        $proyecto = Proyecto::findOrFail($id);
+        return view('proyectos.show', compact('proyecto', 'estudiantes', 'docentes'));
     }
 
     /**

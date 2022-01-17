@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Docente extends Model
 {
     use HasFactory;
+
+    public function proyectoDir(){
+        return $this->hasMany(Proyecto::class);
+    }
+
+    public function proyectoEva(){
+        return $this->hasMany(Proyecto::class);
+    }
 }

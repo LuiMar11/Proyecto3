@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
-use Database\Seeders\EstudianteSeeder;
+use App\Http\Controllers\ProyectoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +29,6 @@ Route::resource('docentes', DocenteController::class);
 
 // Estudiantes
 Route::resource('estudiantes', EstudianteController::class);
+
+//Proyectos
+Route::resource('proyectos', ProyectoController::class);

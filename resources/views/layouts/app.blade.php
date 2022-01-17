@@ -57,7 +57,7 @@
                                 Estudiantes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{-- {{ route('proyectos.index') }} --}}">Lista
+                            <a class="nav-link text-white" href="{{ route('proyectos.index') }}">Lista
                                 Proyectos</a>
                         </li>
                         <li class="nav-item">

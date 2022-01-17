@@ -6,7 +6,6 @@ use App\Models\Estudiante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use Database\Seeders\EstudianteSeeder;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EstudianteController extends Controller
