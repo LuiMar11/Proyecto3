@@ -23,11 +23,11 @@
                         <form action="{{ url('/proyectos/' . $proyecto->id) }}" method="POST" class="signup-form">
                             @csrf
                             {{ method_field('PATCH') }}
-                            {{-- <a class=" text-dark"
-                                href="{{ App\Models\Proyecto::crearCodigo($proyecto) }}">Código</a> --}}
                             <label class="label"><b>Código</b></label>
-                            <input class="form-control" type="text" id="codigo" name="codigo"
-                                value="{{ $proyecto->codigo }}">
+                            <a class=" text-dark"
+                                href="{{ App\Models\Proyecto::crearCodigo($proyecto) }}"></a>
+                            <label id="codigo" name="codigo">{{ $proyecto->codigo }} </label>
+
                             <div class="form-group">
                                 <label class="label"><b>Titulo</b></label>
                                 <input id="titulo" name="titulo" type="text" class="form-control"
@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <label class="label"><b>Estado</b></label>
                                 <select class="form-control" id="estado" name="estado">
-                                    {{-- <option defaultValue>{{ $proyecto->estado }}</option> --}}
+                                    <option defaultValue>{{ $proyecto->estado }}</option>
                                     <option value="Aprobado">Aprobado</option>
                                     <option value="Rechazado">Rechazado</option>
                                     <option value="Cancelado">Cancelado</option>
