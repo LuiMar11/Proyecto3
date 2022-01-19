@@ -10,10 +10,26 @@
                         <h3>Lista Proyectos</h3>
                         @can('proyectos.create')
                             <a class="btn btn-success float-right" href="{{ route('proyectos.create') }}"><i
-                                    class="fas fa-user-plus"></i></a>
+                                    class="fas fa-plus"></i></a>
                         @endcan
+                        <br><br>
+
                         @can('proyectos.edit')
-                            <a class="btn btn-primary float-left" href="{{-- {{ route('imprimir') }} --}}">Generar Acta</a>
+                            <div class="row justify-content-center">
+                                <div class="col-md-8">
+                                    <form action="{{ route('imprimir') }}" method="GET">
+                                        <div class="input-group">
+                                            <input name="fecha" id="fecha" type="date" class="form-control"
+                                                placeholder="Fecha acta a generar" required>
+
+                                            <div class="input-group-append">
+                                                <button class="btn btn-success" style="background-color: #53cf48;" type="submit"
+                                                    id="search">Generear acta</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         @endcan
 
                         <br><br>
@@ -37,7 +53,7 @@
                         <div class="card-body justify-content-center">
                             <div class="table-responsive">
                                 <table class="table table-md  text-center">
-                                    <thead class="table-ligth" style="background-color: #0dac54;">
+                                    <thead class="table-ligth" style="background-color: #53cf48;">
                                         <th>Codigo</th>
                                         <th>Titulo</th>
                                         <th>Modalidad</th>

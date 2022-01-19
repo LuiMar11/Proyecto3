@@ -114,7 +114,7 @@ class ProyectoController extends Controller
     {
         $proyecto = request()->except('_token', '_method');
         Proyecto::where('id', '=', $id)->update($proyecto);
-        Alert::success('Se asigno', 'código, director y evaluador al proyecto de grado');
+        //Alert::success('Se asigno código, director y evaluador al proyecto de grado');
         return redirect('proyectos');
     }
 

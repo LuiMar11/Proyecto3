@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\ProyectoController;
+use App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,6 @@ Route::resource('estudiantes', EstudianteController::class);
 
 //Proyectos
 Route::resource('proyectos', ProyectoController::class);
+
+//pdf
+Route::name('imprimir')->get('/imprimir', [PdfController::class, 'imprimir']);

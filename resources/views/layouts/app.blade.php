@@ -50,6 +50,9 @@
                                     class="fas fa-home"></i></i></a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('inicio') }}">Modalidades</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('docentes.index') }}">Lista Docentes</a>
                         </li>
                         <li class="nav-item">
@@ -59,9 +62,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('proyectos.index') }}">Lista
                                 Proyectos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('inicio') }}">Modalidades</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{-- {{ route('actas') }} --}}">Actas</a>
