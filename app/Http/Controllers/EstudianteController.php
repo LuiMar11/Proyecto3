@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Docente;
 use App\Models\Estudiante;
+use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -69,8 +71,10 @@ class EstudianteController extends Controller
     public function show($id)
     {
         $estudiante = Estudiante::findOrFail($id);
-        $user = User::all()->where('email',$estudiante->email);
-        return view('estudiantes.show', compact('estudiante','user'));
+        $users = User::all();
+        $proyectos = Proyecto::all()->where('id_estudiante1',$id);
+        $docentes = Docente::all();
+        return view('estudiantes.show', compact('estudiante','users','proyectos','docentes'));
     }
 
     /**

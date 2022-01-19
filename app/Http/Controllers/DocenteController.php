@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Docente;
+use App\Models\Estudiante;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -69,7 +70,9 @@ class DocenteController extends Controller
     public function show($id)
     {
         $docente = Docente::findOrFail($id);
-        return view('docentes.show', compact('docente'));
+        $proyectos = Proyecto::all();
+        $estudiantes = Estudiante::all();
+        return view('docentes.show', compact('docente','proyectos','estudiantes'));
     }
 
     /**
