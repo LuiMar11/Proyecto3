@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Docente;
-use App\Models\Estudiante;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +33,7 @@ class DocenteController extends Controller
             ->orWhere('cedula', 'LIKE', '%' . $texto . '%')
             ->paginate(10);
 
-        return view('docentes.index',compact('docentes'));
+        return view('docentes.index', compact('docentes'));
     }
 
     /**
@@ -56,9 +55,13 @@ class DocenteController extends Controller
     public function store(Request $request)
     {
         $docente = request()->except('_token');
-        Docente::insert($docente);
-        Alert::success('Docente inscrito a la base de datos');
-        return redirect('/docentes'); 
+        if ((Docente::where('cedula', $request->cedula)->exists()) | (Docente::where('email', $request->email)->exists())) {
+            Alert::warning('El docente ya existe');
+        } else {
+            Docente::insert($docente);
+            Alert::success('Docente inscrito a la base de datos');
+        }
+        return redirect('/docentes');
     }
 
     /**
@@ -71,8 +74,8 @@ class DocenteController extends Controller
     {
         $docente = Docente::findOrFail($id);
         $proyectos = Proyecto::all();
-        $estudiantes = Estudiante::all();
-        return view('docentes.show', compact('docente','proyectos','estudiantes'));
+        $estudiantes = Docente::all();
+        return view('docentes.show', compact('docente', 'proyectos', 'estudiantes'));
     }
 
     /**
@@ -101,7 +104,6 @@ class DocenteController extends Controller
         $docente = Docente::findOrFail($id);
         Alert::success('Docente editado correctamente');
         return redirect('docentes');
-    
     }
 
     /**

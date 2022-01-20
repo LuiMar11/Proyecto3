@@ -57,9 +57,13 @@ class EstudianteController extends Controller
     public function store(Request $request)
     {
         $estudiante = request()->except('_token');
-        Estudiante::insert($estudiante);
-        Alert::success('Estudiante inscrito a la base de datos');
-        return redirect('/estudiantes'); 
+        if ((Estudiante::where('cedula', $request->cedula)->exists())|Estudiante::where('email', $request->email)->exists()) {
+            Alert::warning('El estudiante ya existe');
+        } else {
+            Estudiante::insert($estudiante);
+            Alert::success('Estudiante inscrito a la base de datos');
+        }
+        return redirect('/estudiantes');
     }
 
     /**
@@ -72,9 +76,9 @@ class EstudianteController extends Controller
     {
         $estudiante = Estudiante::findOrFail($id);
         $users = User::all();
-        $proyectos = Proyecto::all()->where('id_estudiante1',$id);
+        $proyectos = Proyecto::all()->where('id_estudiante1', $id);
         $docentes = Docente::all();
-        return view('estudiantes.show', compact('estudiante','users','proyectos','docentes'));
+        return view('estudiantes.show', compact('estudiante', 'users', 'proyectos', 'docentes'));
     }
 
     /**
@@ -86,7 +90,7 @@ class EstudianteController extends Controller
     public function edit($id)
     {
         $estudiante = Estudiante::findOrFail($id);
-        return view('estudiantes.edit',compact('estudiante'));
+        return view('estudiantes.edit', compact('estudiante'));
     }
 
     /**
@@ -98,8 +102,8 @@ class EstudianteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $estudiante = request()->except('_token','_method');
-        Estudiante::where('id','=',$id)->update($estudiante);
+        $estudiante = request()->except('_token', '_method');
+        Estudiante::where('id', '=', $id)->update($estudiante);
         $estudiante = Estudiante::findOrFail($id);
         Alert::success('Estudiante editado correctamente');
         return redirect('estudiantes');

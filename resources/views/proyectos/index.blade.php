@@ -65,7 +65,7 @@
                                         <th>Fecha Inicio</th>
                                         <th>Fecha Finalización</th>
                                         <th>Observaciones</th>
-                                        <th>Información</th>
+                                        <th></th>
                                         <th></th>
                                         <th></th>
                                     </thead>
