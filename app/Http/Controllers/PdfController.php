@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RequestActa;
 use Illuminate\Http\Request;
 use App\Models\Docente;
 use App\Models\Estudiante;
 use App\Models\Proyecto;
 use App\Models\Acta;
+use Illuminate\Support\Str;
+use Response;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PdfController extends Controller
 {
+
+    public function index()
+    {
+        $actas = Acta::all();
+        return view('pdf.actas', compact('actas'));
+    }
+
     function imprimir(Request $request)
     {
         $fecha = $request->get('fecha');
@@ -21,13 +30,14 @@ class PdfController extends Controller
 
         $acta = new Acta;
         $name = 'Acta-' . $fecha . 'pdf';
-        $path = public_path('pdf/' . 'Acta-' . $fecha . '.pdf');
-    
+        //$path = public_path('pdf/' . 'Acta-' . $fecha . '.pdf');
+        $path = storage_path('app/public/actas-pdf/' . 'Acta-' . $fecha . '.pdf');
+
         $acta->name = 'Acta-' . $fecha;
         $acta->file_path = $path;
-    
-        if ((Acta::where('name', $acta->name )->exists()) | (Acta::where('file_path', $acta->file_path)->exists())) {
-            Alert::warning('El acta ya existe');
+
+        if ((Acta::where('name', $acta->name)->exists()) | (Acta::where('file_path', $acta->file_path)->exists())) {
+            //Alert::warning('El acta ya existe');
         } else {
             $acta->save();
         }
@@ -35,20 +45,18 @@ class PdfController extends Controller
         $view = \View::make('pdf.imprimir', compact('proyectos', 'estudiantes', 'docentes', 'acta'));
         $pdf = \PDF::loadHtml($view);
 
-        $pdf->save(public_path('pdf/' . 'Acta-' . $fecha . '.pdf'));
+        //$pdf->save(public_path('actas-pdf/' . 'Acta-' . $fecha . '.pdf'));
+        $pdf->save(storage_path('app/public/actas-pdf/' . 'Acta-' . $fecha . '.pdf'));
 
-        //$pdf->save(storage_path('app/public/actas/' . 'Acta-' . Carbon::now()->format('d-m-Y') . '.pdf'));
-        return $pdf->stream('Acta-' /* . Carbon::now()->format('d-m-Y')  */ . 'pdf');
+        return $pdf->stream('Acta-' . $fecha . 'pdf');
     }
 
-    function mostrar()
+    public function show($id)
     {
-        $proyectos = Proyecto::all();
-        $docentes = Docente::all();
-        $estudiantes = Estudiante::all();
-
-        $view = \View::make('pdf.imprimir', compact('proyectos', 'estudiantes', 'docentes'));
-        $pdf = \PDF::loadHtml($view);
-        return $pdf->stream();
+        $acta = Acta::FindorFail($id);
+        
+        return Response::make(file_get_contents($acta->file_path), 200, [
+            'Content-Type' => 'application/pdf',
+           ]);
     }
 }

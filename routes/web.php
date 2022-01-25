@@ -36,3 +36,6 @@ Route::resource('proyectos', ProyectoController::class);
 
 //pdf
 Route::name('imprimir')->get('/imprimir', [PdfController::class, 'imprimir']);
+Route::name('actas')->get('/actas', [PdfController::class, 'index']);
+
+Route::name('show')->get('/acta/{id}',[PdfController::class,'show']);

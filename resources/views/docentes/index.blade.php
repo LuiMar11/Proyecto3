@@ -94,14 +94,14 @@
                                                 </td>
                                                 <td>
                                                     @can('docentes.delete')
-                                                    <form action="{{ url('/docentes/' . $docente->id) }}" method="POST">
-                                                        @csrf
-                                                        {{ method_field('DELETE') }}
-                                                        <button class="btn btn-danger" type="submit"
-                                                            onclick="return confirm('¿Desea eliminar el docente?')"><i
-                                                                class="fas fa-trash"></i></button>
-                                                    </form>
-                                                @endcan
+                                                        <form action="{{ url('/docentes/' . $docente->id) }}" method="POST">
+                                                            @csrf
+                                                            {{ method_field('DELETE') }}
+                                                            <button class="btn btn-danger" type="submit"
+                                                                onclick="return confirm('¿Desea eliminar el docente?')"><i
+                                                                    class="fas fa-trash"></i></button>
+                                                        </form>
+                                                    @endcan
 
                                                 </td>
                                             </tr>
