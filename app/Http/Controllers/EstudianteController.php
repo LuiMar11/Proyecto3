@@ -75,10 +75,10 @@ class EstudianteController extends Controller
     public function show($id)
     {
         $estudiante = Estudiante::findOrFail($id);
-        $users = User::all();
+        $user = User::all()->where('email',$estudiante->email);
         $proyectos = Proyecto::all()->where('id_estudiante1', $id);
         $docentes = Docente::all();
-        return view('estudiantes.show', compact('estudiante', 'users', 'proyectos', 'docentes'));
+        return view('estudiantes.show', compact('estudiante', 'user', 'proyectos', 'docentes'));
     }
 
     /**

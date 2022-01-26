@@ -5,6 +5,7 @@ use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\NotasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,7 @@ Route::resource('proyectos', ProyectoController::class);
 //pdf
 Route::name('imprimir')->get('/imprimir', [PdfController::class, 'imprimir']);
 Route::name('actas')->get('/actas', [PdfController::class, 'index']);
-
 Route::name('show')->get('/acta/{id}',[PdfController::class,'show']);
+
+//Pagos y notas
+Route::resource('notas',NotasController::class);

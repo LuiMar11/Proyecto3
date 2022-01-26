@@ -44,6 +44,9 @@
                                 <th>Programa</th>
                                 <th>Estado</th>
                                 <th>Información</th>
+                                @can('estudiantes.create')
+                                <th>Extendido notas</th>
+                                @endcan
                                 <th></th>
                                 <th></th>
                             </thead>
@@ -79,8 +82,16 @@
                                                 {{ $estudiante->estado }}
                                             </td>
                                             <td>
-                                                <a class="btn btn-primary" href="{{ url('/estudiantes/' . $estudiante->id) }}"><i class="fas fa-info-circle"></i></a>
+                                                <a class="btn btn-primary"
+                                                    href="{{ route('estudiantes.show', $estudiante->id) }} "><i
+                                                        class="fas fa-info-circle"></i></a>
                                             </td>
+                                            {{-- Subir archivo --}}
+                                            @can('estudiantes.create')
+                                            <td>
+                                                <a href="" class="btn btn-secondary"><i class="fas fa-file-upload"></i></a>
+                                            </td>
+                                            @endcan
                                             <td>
                                                 @can('estudiantes.edit')
                                                     <a class="btn btn-success"

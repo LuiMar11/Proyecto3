@@ -4,15 +4,66 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card-border-success">
+                <div class="card border-success">
                     <div class="card-header text-center">
                         <h4> Estudiante : {{ $estudiante->nombre }} {{ $estudiante->apellido }}</h4>
 
-                        <h5>Pago</h5>
-                        <a href="" class="btn btn-primary"><i class="fas fa-file-upload"></i></a>
-                        <a href="" class="btn btn-success"><i class="fas fa-eye"></i></a>
+                        @can('estudiantes.create')
+                            <br>
+                            <h5>Pago</h5>
+
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="open"><i
+                                    class="fas fa-file-upload"></i></button>
+                        @endcan
+
+                        <form method="post" action=" {{ url('documentos',$estudiante->id) }} " id="form">
+                            @csrf
+                            <!-- Modal -->
+                            <div class="modal" tabindex="-1" role="dialog" id="myModal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="alert alert-danger" style="display:none"></div>
+                                        <div class="modal-header text-center">
+                                            <h5 class="modal-title">Subir documentos</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="custom-file">
+                                                <input type="file" name="pago" class="custom-file-input" id="chooseFile">
+                                                <label class="custom-file-label" for="chooseFile">Seleccionar
+                                                    pago</label>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" name="submit" class="btn btn-primary ">
+                                                    Subir Archivo
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+
+
+                        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                                                crossorigin="anonymous">
+                        </script>
+                        <!-- Latest compiled and minified JavaScript -->
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                                                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                                                crossorigin="anonymous"></script>
+
 
                     </div>
+
                     <div class="card-body justify-content-center">
 
                         <div class="table-responsive">
