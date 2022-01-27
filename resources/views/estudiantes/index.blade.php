@@ -13,7 +13,14 @@
                             <a class="btn btn-success float-right " style="background-color: #0dac54;"
                                 href="{{ route('estudiantes.create') }}"><i class="fas fa-user-plus"></i></a>
                         @endcan
-
+                        {{-- Subir archivo --}}
+                        {{-- @can('estudiantes.create')
+                            <td>
+                                <!-- Botón para el modal -->
+                                <button type="button" class="btn btn-primary float-center" data-toggle="modal" data-target="#myModal"
+                                    id="open"><i class="fas fa-file-upload"></i></button>
+                            </td>
+                        @endcan --}}
                         <br><br>
                         <div class="row justify-content-center">
                             <div class="col-md-8">
@@ -44,9 +51,6 @@
                                 <th>Programa</th>
                                 <th>Estado</th>
                                 <th>Información</th>
-                                @can('estudiantes.create')
-                                <th>Extendido notas</th>
-                                @endcan
                                 <th></th>
                                 <th></th>
                             </thead>
@@ -86,12 +90,45 @@
                                                     href="{{ route('estudiantes.show', $estudiante->id) }} "><i
                                                         class="fas fa-info-circle"></i></a>
                                             </td>
-                                            {{-- Subir archivo --}}
-                                            @can('estudiantes.create')
-                                            <td>
-                                                <a href="" class="btn btn-secondary"><i class="fas fa-file-upload"></i></a>
-                                            </td>
-                                            @endcan
+
+                                            <form method="POST" enctype="multipart/form-data"
+                                                action=" {{-- {{ route('guardarNotas', $estudiante->id) }} --}} " id="form">
+                                                @csrf
+                                                <!-- Modal -->
+                                                <div class="modal" tabindex="-1" role="dialog" id="myModal">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="alert alert-danger" style="display:none"></div>
+                                                            <div class="modal-header text-center">
+                                                                <h5 class="modal-title">Subir documentos</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                
+                                                                <div class="custom-file">
+                                                                    <input type="file" name="file" class="custom-file-input"
+                                                                        id="chooseFile">
+                                                                    <label class="custom-file-label"
+                                                                        for="chooseFile">Seleccionar
+                                                                        extendido de notas</label>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger"
+                                                                        data-dismiss="modal">Cancelar</button>
+                                                                    <button type="submit" name="submit"
+                                                                        class="btn btn-primary ">
+                                                                        Subir Archivo
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </form>
                                             <td>
                                                 @can('estudiantes.edit')
                                                     <a class="btn btn-success"
@@ -126,3 +163,11 @@
     </div>
 
 @endsection
+
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous">
+</script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

@@ -40,5 +40,7 @@ Route::name('imprimir')->get('/imprimir', [PdfController::class, 'imprimir']);
 Route::name('actas')->get('/actas', [PdfController::class, 'index']);
 Route::name('show')->get('/acta/{id}',[PdfController::class,'show']);
 
-//Pagos y notas
-Route::resource('notas',NotasController::class);
+ //Pagos y notas
+Route::name('notas.index')->get('/notas',[NotasController::class,'index']);
+//Route::name('guardarNotas')->post('/upload/{id}',[NotasController::class,'upload']);
+//Route::name('mostrarNotas')->get('/notas/{id}',[NotasController::class,'mostrarNotas']); */

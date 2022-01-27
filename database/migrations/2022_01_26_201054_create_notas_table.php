@@ -15,7 +15,7 @@ class CreateNotasTable extends Migration
     {
         Schema::create('notas', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('name')->nullable()->unique();
             $table->string('file_path')->nullable();
             $table->string('id_estudiante');
 

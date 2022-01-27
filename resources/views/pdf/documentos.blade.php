@@ -12,8 +12,18 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Extendido de notas</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
+
+                        @foreach ($estudiantes as $estudiante)
+                            @foreach ($notas as $nota)
+                                @if ($estudiante->cedula == $nota->id_estudiante)
+                                    <a href="{{ route('mostrarNotas', $nota->id) }}"> {{ $estudiante->nombre }}
+                                        {{ $estudiante->apellido }} extendido de notas</a> <br>
+
+                                @endif
+
+                            @endforeach
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -21,8 +31,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Pagos</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
                     </div>
                 </div>
             </div>

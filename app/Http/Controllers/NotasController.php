@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Notas;
 use Illuminate\Http\Request;
 use App\Models\Estudiante;
+use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
+use Response;
 
 class NotasController extends Controller
 {
@@ -15,29 +18,39 @@ class NotasController extends Controller
      */
     public function index()
     {
-        return view('pdf.documentos');
+        $notas = Notas::all();
+        $estudiantes = Estudiante::all();
+        return view('pdf.documentos', compact('notas', 'estudiantes'));
     }
 
-    public function fileUpload(Request $req, $id)
+    public function upload(Request $req, $id)
     {
         $estudiante = Estudiante::findOrFail($id);
+        $fecha = Carbon::now()->format('Ymd');
+
         $req->validate([
-            'file' => 'required|mimes:pdf|max:2048'
+            'file' =>'required|mimes:pdf|max:2048'
         ]);
 
-        $fileModel = new Notas;
-        if ($req->file()) {
-            $fileName = time() . '_' . $req->file->getClientOriginalName();
-            $filePath = $req->file('file')->storeAs('uploads/pago', $fileName, 'public');
+        $notas = new Notas;
 
-            $fileModel->name = time() . '_' . $req->file->getClientOriginalName();
-            $fileModel->file_path = '/storage/' . $filePath;
-            $fileModel->id_estudiante = $estudiante->cedula;
-            $fileModel->save();
+        if($req->file()){
+            $nombre = $fecha.'_ExtendidoDeNotas'.$estudiante->nombre.$estudiante->apellido;
+            $ruta = $req->file('file')->storeAs('notas',$nombre,'public');
 
-            return back()
-                ->with('success', 'Archivo cargado corectamente.')
-                ->with('file', $fileName);
+            $notas->name = $nombre;
+            $notas->file_path = '/storage/'.$ruta;
+            $notas->id_estudiante = $estudiante->cedula;
+            $notas->save();
+            
+            return redirect('/notas')->with('success', Alert::success('Extendido de notas guardado en la base de datos'));
+
         }
+
+    }
+
+    public function mostrarNotas($id)
+    {
+        
     }
 }

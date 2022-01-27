@@ -17,7 +17,7 @@
                                     class="fas fa-file-upload"></i></button>
                         @endcan
 
-                        <form method="post" action=" {{ url('documentos',$estudiante->id) }} " id="form">
+                        <form method="post" action=" {{ url('documentos', $estudiante->id) }} " id="form">
                             @csrf
                             <!-- Modal -->
                             <div class="modal" tabindex="-1" role="dialog" id="myModal">
@@ -51,17 +51,6 @@
                                     </div>
                                 </div>
                         </form>
-
-
-                        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-                                                crossorigin="anonymous">
-                        </script>
-                        <!-- Latest compiled and minified JavaScript -->
-                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-                                                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-                                                crossorigin="anonymous"></script>
-
-
                     </div>
 
                     <div class="card-body justify-content-center">
@@ -112,3 +101,9 @@
     </div>
 
 @endsection
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous">
+</script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
