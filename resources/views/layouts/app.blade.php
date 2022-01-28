@@ -64,7 +64,7 @@
                                 Proyectos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href=" {{ route('notas.index') }}">Documentos estudiantes</a>
+                            <a class="nav-link text-white" href=" {{ route('documentos.index') }}">Documentos estudiantes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('actas') }}">Actas</a>

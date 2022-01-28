@@ -7,9 +7,7 @@ use App\Models\Docente;
 use App\Models\Estudiante;
 use App\Models\Proyecto;
 use App\Models\Acta;
-use Illuminate\Support\Str;
 use Response;
-use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PdfController extends Controller
@@ -24,7 +22,7 @@ class PdfController extends Controller
     function imprimir(Request $request)
     {
         $fecha = $request->get('fecha');
-        $proyectos = Proyecto::all()->where('inicio', $fecha);
+        $proyectos = Proyecto::all()->where('acta', $fecha);
         $docentes = Docente::all();
         $estudiantes = Estudiante::all();
 

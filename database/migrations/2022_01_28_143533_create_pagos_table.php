@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotasTable extends Migration
+class CreatePagosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateNotasTable extends Migration
      */
     public function up()
     {
-        Schema::create('notas', function (Blueprint $table) {
+        Schema::create('pagos', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable()->unique();
-            $table->string('file_path')->nullable();
-            $table->string('id_estudiante');
+            $table->string('path')->nullable();
+            $table->string('id_estudiante')->nullable();
 
             $table->foreign('id_estudiante')
                 ->references('cedula')
@@ -35,6 +35,6 @@ class CreateNotasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notas');
+        Schema::dropIfExists('pagos');
     }
 }

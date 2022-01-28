@@ -19,7 +19,7 @@ class CreateProyectosTable extends Migration
             $table->string('codigo')->nullable();
             $table->text('titulo');
             $table->string('modalidad');
-            $table->string('acta')->nullable();
+            $table->date('acta')->nullable();
             $table->string('estado')->nullable();
             $table->date('inicio')->nullable();
             $table->date('fin')->nullable();

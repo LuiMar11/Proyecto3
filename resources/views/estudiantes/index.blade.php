@@ -1,3 +1,9 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
 @extends('layouts.app')
 @section('content')
 
@@ -9,18 +15,67 @@
                 <div class="card border-success ">
                     <div class="card-header text-center">
                         <h3>Lista Estudiantes</h3>
+                        <br>
                         @can('estudiantes.create')
                             <a class="btn btn-success float-right " style="background-color: #0dac54;"
                                 href="{{ route('estudiantes.create') }}"><i class="fas fa-user-plus"></i></a>
                         @endcan
                         {{-- Subir archivo --}}
-                        {{-- @can('estudiantes.create')
+                        @can('estudiantes.create')
                             <td>
-                                <!-- Botón para el modal -->
-                                <button type="button" class="btn btn-primary float-center" data-toggle="modal" data-target="#myModal"
-                                    id="open"><i class="fas fa-file-upload"></i></button>
+                                <!-- Botón -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                    <i class="fas fa-file-upload"></i>
+                                </button>
                             </td>
-                        @endcan --}}
+
+                            <form method="POST" enctype="multipart/form-data" action=" {{ url('/uploadNotas') }} "
+                                id="form">
+                                @csrf
+                                <!-- The Modal -->
+                                <div class="modal fade" id="myModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header-center">
+                                                <h4 class="modal-title">Upload extendido de notas</h4>
+
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                <div class="col-md-12">
+                                                    <input type="file" name="file" id="file" class="form-control">
+                                                    <br>
+                                                    <div class="form-group">
+                                                        <label for="">Nombres y Apellidos del estudiante</label>
+                                                        <select name="id_estudiante" id="id_estudiante" class="form-control">
+                                                            <option defaultValue></option>
+                                                            @foreach ($estudiantes as $estudiante)
+                                                                <option value="{{ $estudiante->cedula }}">
+                                                                    {{ $estudiante->nombre }}
+                                                                    {{ $estudiante->apellido }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" name="submit" class="btn btn-success"
+                                                    style="background-color: #0dac54;">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        @endcan
+
                         <br><br>
                         <div class="row justify-content-center">
                             <div class="col-md-8">
@@ -90,45 +145,6 @@
                                                     href="{{ route('estudiantes.show', $estudiante->id) }} "><i
                                                         class="fas fa-info-circle"></i></a>
                                             </td>
-
-                                            <form method="POST" enctype="multipart/form-data"
-                                                action=" {{-- {{ route('guardarNotas', $estudiante->id) }} --}} " id="form">
-                                                @csrf
-                                                <!-- Modal -->
-                                                <div class="modal" tabindex="-1" role="dialog" id="myModal">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="alert alert-danger" style="display:none"></div>
-                                                            <div class="modal-header text-center">
-                                                                <h5 class="modal-title">Subir documentos</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                
-                                                                <div class="custom-file">
-                                                                    <input type="file" name="file" class="custom-file-input"
-                                                                        id="chooseFile">
-                                                                    <label class="custom-file-label"
-                                                                        for="chooseFile">Seleccionar
-                                                                        extendido de notas</label>
-                                                                </div>
-
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-danger"
-                                                                        data-dismiss="modal">Cancelar</button>
-                                                                    <button type="submit" name="submit"
-                                                                        class="btn btn-primary ">
-                                                                        Subir Archivo
-                                                                    </button>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </form>
                                             <td>
                                                 @can('estudiantes.edit')
                                                     <a class="btn btn-success"
@@ -163,11 +179,3 @@
     </div>
 
 @endsection
-
-
-<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-crossorigin="anonymous">
-</script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

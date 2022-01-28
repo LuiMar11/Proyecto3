@@ -10,6 +10,7 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('img/manzana.png') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 
 <body>
@@ -22,14 +23,14 @@
                         <h3 class="mb-4"><b>Agregar Proyecto </b></h3>
                         <form action="{{ route('proyectos.store') }}" method="POST" class="signup-form">
                             @csrf
-                           
+
                             <div class="form-group">
                                 <label class="label"><b>Titulo</b></label>
                                 <input id="titulo" name="titulo" type="text" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Modalidad</b></label>
-                                <select class="form-control" id="modalidad" name="modalidad">
+                                <select class="form-control" id="modalidad" name="modalidad" onchange="carg(this);">
                                     <option defaultValue>---Modalidad---</option>
                                     <option value="Monografia">Monografia</option>
                                     <option value="Práctica">Práctica</option>
@@ -50,7 +51,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="label"><b>Nombres y Apellidos Estudiante 3</b></label>
+                                <label class="label"><b>Nombres y Apellidos Estudiante 2</b></label>
                                 <select class="form-control" name="id_estudiante2" id="id_estudiante2">
                                     <option defaultValue></option>
                                     @foreach ($estudiantes as $estudiante)
@@ -82,5 +83,41 @@
         </div>
     </div>
 </body>
+
+<script>
+    var est1 = document.getElementById('id_estudiante1');
+    var est2 = document.getElementById('id_estudiante2');
+    var est3 = document.getElementById('id_estudiante3');
+
+    function carg(elemento) {
+        d = elemento.value;
+
+        if (d == "Monografia") {
+            est1.disabled = false;
+            est2.disabled = false;
+            est3.disabled = true;
+        } else if (d == "Práctica") {
+            est1.disabled = false;
+            est2.disabled = true;
+            est3.disabled = true;
+        } else if (d == "Emprendimiento") {
+            est1.disabled = false;
+            est2.disabled = false;
+            est3.disabled = true;
+        } else if (d == "Proyecto Investigación") {
+            est1.disabled = false;
+            est2.disabled = false;
+            est3.disabled = false;
+        } else if (d == "Desarrollo Tecnologico") {
+            est1.disabled = false;
+            est2.disabled = false;
+            est3.disabled = false;
+        } else if (d == "Seminario") {
+            est1.disabled = false;
+            est2.disabled = true;
+            est3.disabled = true;
+        }
+    }
+</script>
 
 </html>

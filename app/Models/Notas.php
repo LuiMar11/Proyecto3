@@ -9,7 +9,13 @@ class Notas extends Model
 {
     use HasFactory;
 
-    public function estudiante(){
+    protected $fillable = [
+        'name',
+        'path',
+        'id_estudiante'
+    ];
+
+    public function estudiantes(){
         return $this->belongsTo(Estudiante::class, 'id_estudiante');
     }
 }

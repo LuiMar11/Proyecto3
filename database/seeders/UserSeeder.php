@@ -15,8 +15,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = User::create([
-            'nombre'      => 'L',
-            'apellido' => 'G',
+            'nombre'      => 'Administrador',
+            'apellido' => 'Admin',
             'permisos' => 'Admin',
             'email'     => 'adminsiap@uts.edu.co',
             'password'  => bcrypt('123456789'),
@@ -24,30 +24,13 @@ class UserSeeder extends Seeder
         $admin->assignRole('Admin');
 
         $comite = User::create([
-            'nombre'      => 'A',
-            'apellido' => 'H',
+            'nombre'      => 'Comite',
+            'apellido' => 'C',
             'permisos' => 'comite',
             'email'     => 'comiteadmon@uts.edu.co',
             'password'  => bcrypt('123456789'),
         ]);
         $comite->assignRole('Comite');
 
-        $estudiante = User::create([
-            'nombre'      => 'L',
-            'apellido' =>'L',
-            'permisos' => 'Estudiante' ,
-            'email'     => 'estudiante@uts.edu.co',
-            'password'  => bcrypt('123456789'),
-        ]);
-        $estudiante->assignRole('Estudiante');
-
-        $docente = User::create([
-            'nombre' => 'J',
-            'apellido' =>'K',
-            'permisos' => 'Docente',
-            'email' => 'docente@uts.edu.co',
-            'password'  => bcrypt('123456789'),
-        ]);
-        $docente->assignRole('Docente');
     }
 }

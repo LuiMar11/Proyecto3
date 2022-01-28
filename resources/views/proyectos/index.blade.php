@@ -60,7 +60,7 @@
                                         <th>Estudiantes</th>
                                         <th>Director</th>
                                         <th>Evaluador</th>
-                                        <th>Acta Aceptación</th>
+                                        <th>Fecha Acta Aceptación</th>
                                         <th>Estado Proyecto</th>
                                         <th>Fecha Inicio</th>
                                         <th>Fecha Finalización</th>

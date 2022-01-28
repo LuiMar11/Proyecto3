@@ -2,11 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\DocumentosController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\PdfController;
-use App\Http\Controllers\NotasController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,7 +39,7 @@ Route::name('imprimir')->get('/imprimir', [PdfController::class, 'imprimir']);
 Route::name('actas')->get('/actas', [PdfController::class, 'index']);
 Route::name('show')->get('/acta/{id}',[PdfController::class,'show']);
 
- //Pagos y notas
-Route::name('notas.index')->get('/notas',[NotasController::class,'index']);
-//Route::name('guardarNotas')->post('/upload/{id}',[NotasController::class,'upload']);
-//Route::name('mostrarNotas')->get('/notas/{id}',[NotasController::class,'mostrarNotas']); */
+//Pagos y notas
+Route::name('documentos.index')->get('/documentos',[DocumentosController::class,'index']);
+Route::name('documentos.upload')->post('/uploadNotas', [DocumentosController::class, 'notas']);
+Route::name('notas')->get('/notas/{id}',[DocumentosController::class,'mostrarNotas']);

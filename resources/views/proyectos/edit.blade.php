@@ -46,8 +46,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="label"><b>Acta Inicio</b></label>
-                                <input id="acta" name="acta" type="text" class="form-control"
+                                <label class="label"><b>Fecha Acta Inicio</b></label>
+                                <input id="acta" name="acta" type="date" class="form-control"
                                     value="{{ $proyecto->acta }}">
                             </div>
                             <div class="form-group">

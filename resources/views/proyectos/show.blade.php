@@ -30,7 +30,7 @@
                         <label><b>Modalidad:</b></label>
                         <label id="modalidad">{{ $proyecto->modalidad }}</label>
                         <br>
-                        <label><b>Acta Inicio:</b></label>
+                        <label><b>Fecha Acta Inicio:</b></label>
                         <label id="acta">{{ $proyecto->acta }}</label>
                         <br>
                         <label><b>Estado Proyecto:</b></label>
