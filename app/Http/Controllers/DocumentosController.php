@@ -18,12 +18,18 @@ class DocumentosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexNotas()
     {
         $notas = Notas::all();
+        $estudiantes = Estudiante::all();
+        return view('pdf.notas', compact('notas', 'estudiantes'));
+    }
+
+    public function indexPagos()
+    {
         $pagos = Pago::all();
         $estudiantes = Estudiante::all();
-        return view('pdf.documentos', compact('notas', 'estudiantes', 'pagos'));
+        return view('pdf.pagos', compact('pagos', 'estudiantes'));
     }
 
     public function notas(Request $request)
@@ -55,7 +61,7 @@ class DocumentosController extends Controller
         $path = Storage::putFileAs('pagos', $request->file('file'), $name);
 
         $pago->name = $name;
-        $pago->path = '/storage/' . $path;
+        $pago->path = Storage::path($path);
         $pago->id_estudiante = $ced;
         $pago->save();
 
@@ -68,6 +74,15 @@ class DocumentosController extends Controller
         $notas= Notas::FindorFail($id);
         
         return Response::make(file_get_contents($notas->path), 200, [
+            'Content-Type' => 'application/pdf',
+           ]);
+    }
+
+    public function mostrarPago($id)
+    {
+        $pago= Pago::FindorFail($id);
+        
+        return Response::make(file_get_contents($pago->path), 200, [
             'Content-Type' => 'application/pdf',
            ]);
     }

@@ -40,6 +40,7 @@ Route::name('actas')->get('/actas', [PdfController::class, 'index']);
 Route::name('show')->get('/acta/{id}',[PdfController::class,'show']);
 
 //Pagos y notas
-Route::name('documentos.index')->get('/documentos',[DocumentosController::class,'index']);
+Route::name('documentos.notas')->get('/notas',[DocumentosController::class,'indexNotas']);
 Route::name('documentos.upload')->post('/uploadNotas', [DocumentosController::class, 'notas']);
 Route::name('notas')->get('/notas/{id}',[DocumentosController::class,'mostrarNotas']);
+Route::name('documentos.pagos')->get('/pagos',[DocumentosController::class,'indexPagos']);

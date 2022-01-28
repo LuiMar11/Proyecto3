@@ -9,13 +9,22 @@ use App\Models\Proyecto;
 use App\Models\Acta;
 use Response;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class PdfController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $actas = Acta::all();
+        $texto = $request->get('texto');
+        $actas = DB::table('actas')
+            ->select(
+                'id',
+                'name',
+                'file_path',
+            )->where('name', 'LIKE', '%' . $texto . '%')
+            ->paginate(10);
+            
         return view('pdf.actas', compact('actas'));
     }
 
@@ -52,9 +61,9 @@ class PdfController extends Controller
     public function show($id)
     {
         $acta = Acta::FindorFail($id);
-        
+
         return Response::make(file_get_contents($acta->file_path), 200, [
             'Content-Type' => 'application/pdf',
-           ]);
+        ]);
     }
 }

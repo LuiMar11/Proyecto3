@@ -63,13 +63,22 @@
                             <a class="nav-link text-white" href="{{ route('proyectos.index') }}">Lista
                                 Proyectos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href=" {{ route('documentos.index') }}">Documentos estudiantes</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Documentos
+                                estudiantes
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{ route('documentos.notas') }}">Extendido de notas</a></li>
+                                <li><a class="dropdown-item" href="{{ route('documentos.pagos') }}">Pagos</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('actas') }}">Actas</a>
                         </li>
-                        
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -99,7 +108,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </a>
 
