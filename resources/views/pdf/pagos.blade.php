@@ -28,7 +28,6 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body justify-content-center">
-                        <h5 class="card-title text-center">Pagos</h5>
                         <table class="table table-hover text-center">
                             <thead class="table-ligth" style="background-color: #53cf48;">
                                 <th>Documento</th>
@@ -63,7 +62,7 @@
                                             </td>
 
                                             <td>
-                                                <a class="btn btn-primary" href=" {{  }} "
+                                                <a class="btn btn-primary" href=" {{ route('pagos',$pago->id) }} "
                                                     target="_blank"><i class="fas fa-eye"></i></i></a>
                                             </td>
 

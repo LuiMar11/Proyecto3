@@ -43,4 +43,7 @@ Route::name('show')->get('/acta/{id}',[PdfController::class,'show']);
 Route::name('documentos.notas')->get('/notas',[DocumentosController::class,'indexNotas']);
 Route::name('documentos.upload')->post('/uploadNotas', [DocumentosController::class, 'notas']);
 Route::name('notas')->get('/notas/{id}',[DocumentosController::class,'mostrarNotas']);
+
 Route::name('documentos.pagos')->get('/pagos',[DocumentosController::class,'indexPagos']);
+Route::name('documentos.uPago')->post('/uploadPago', [DocumentosController::class, 'pago']);
+Route::name('pagos')->get('/pago/{id}',[DocumentosController::class,'mostrarPago']);

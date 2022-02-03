@@ -39,7 +39,7 @@ class DocumentosController extends Controller
 
         $notas = new Notas;
 
-        $name = $fecha . '_' . $request->file('file')->getClientOriginalName();
+        $name = $fecha . '_' . $ced.$request->file('file')->getClientOriginalName();
         $path = Storage::putFileAs('notas', $request->file('file'), $name);
 
         $notas->name = $name;
@@ -47,7 +47,7 @@ class DocumentosController extends Controller
         $notas->id_estudiante = $ced;
         $notas->save();
 
-        return redirect('documentos');
+        return redirect('/notas');
     }
 
     public function pago(Request $request)
@@ -57,7 +57,7 @@ class DocumentosController extends Controller
 
         $pago = new Pago;
 
-        $name = $fecha . '_' . $request->file('file')->getClientOriginalName();
+        $name = $fecha . '_' . $ced .$request->file('file')->getClientOriginalName();
         $path = Storage::putFileAs('pagos', $request->file('file'), $name);
 
         $pago->name = $name;
@@ -65,7 +65,7 @@ class DocumentosController extends Controller
         $pago->id_estudiante = $ced;
         $pago->save();
 
-        return redirect('documentos');
+        return redirect(route('documentos.pagos'));
     }
 
 
