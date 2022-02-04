@@ -24,14 +24,20 @@ class PdfController extends Controller
                 'file_path',
             )->where('name', 'LIKE', '%' . $texto . '%')
             ->paginate(10);
-            
+
         return view('pdf.actas', compact('actas'));
     }
 
     function imprimir(Request $request)
     {
         $fecha = $request->get('fecha');
-        $proyectos = Proyecto::all()->where('acta', $fecha);
+        //$proyectos = Proyecto::all()->where('acta', $fecha);
+
+        $proyectos = DB::table('proyectos')
+            ->where('acta', 'LIKE', '%' . $fecha . '%')
+            ->orWhere('inicio', 'LIKE', '%' . $fecha . '%')
+            ->orWhere('fin', 'LIKE', '%' . $fecha . '%')->get();
+
         $docentes = Docente::all();
         $estudiantes = Estudiante::all();
 
