@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label class="label" for="genero"><b>Género</b></label>
-                            <select class="form-control" id="genero" name="genero">
+                            <select class="form-select" id="genero" name="genero">
                                 <option defaultValue>{{ $docente->genero }}</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
@@ -53,12 +53,12 @@
                             <input id="email" name="email" class="form-control" type="email" value="{{ $docente->email }}">
                         </div>
                         <div class="form-group">
-                            <label class="label" for="profesion"><b>Nivel acádemico</b></label>
+                            <label class="label" for="profesion"><b>Temas</b></label>
                             <input id="nivel" name="nivel" class="form-control" type="text" value="{{ $docente->nivel }}">
                         </div>
                         <div class="form-group">
                             <label class="label" for="contratacion"><b>Contratación</b></label>
-                            <select class="form-control" id="contratacion" name="contratacion">
+                            <select class="form-select" id="contratacion" name="contratacion">
                                 <option defaultValue>{{ $docente->contratacion }}</option>
                                 <option value="Planta">Planta</option>
                                 <option value="Tiempo Completo">Tiempo Completo</option>
@@ -81,5 +81,4 @@
     </div>
 
 </body>
-
 </html>

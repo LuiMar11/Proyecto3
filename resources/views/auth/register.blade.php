@@ -43,7 +43,7 @@
                             <label for="permisos" class="col-md-4 col-form-label text-md-end">{{ __('Rol') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="permisos" name="permisos">
+                                <select class="form-select" id="permisos" name="permisos">
                                     <option value=""></option>
                                     <option value="Docente">Docente</option>
                                     <option value="Estudiante">Estudiante</option>

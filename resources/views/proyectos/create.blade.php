@@ -7,10 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>UTS</title>
     <!-- BOOTSTRAP -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
-   
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
+    </script>
+
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -35,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Modalidad</b></label>
-                                <select class="form-control" id="modalidad" name="modalidad" onchange="carg(this);">
+                                <select class="form-select" id="modalidad" name="modalidad" onchange="carg(this);">
                                     <option defaultValue>---Modalidad---</option>
                                     <option value="Monografia">Monografia</option>
                                     <option value="Práctica">Práctica</option>
@@ -47,7 +53,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Nombres y Apellidos Estudiante 1</b></label>
-                                <select class="form-control" name="id_estudiante1" id="id_estudiante1">
+                                <select class="form-select" name="id_estudiante1" id="id_estudiante1">
                                     <option defaultValue></option>
                                     @foreach ($estudiantes as $estudiante)
                                         <option value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
@@ -57,7 +63,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Nombres y Apellidos Estudiante 2</b></label>
-                                <select class="form-control" name="id_estudiante2" id="id_estudiante2">
+                                <select class="form-select" name="id_estudiante2" id="id_estudiante2">
                                     <option defaultValue></option>
                                     @foreach ($estudiantes as $estudiante)
                                         <option value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
@@ -67,7 +73,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Nombres y Apellidos Estudiante 3</b></label>
-                                <select class="form-control" name="id_estudiante3" id="id_estudiante3">
+                                <select class="form-select" name="id_estudiante3" id="id_estudiante3">
                                     <option defaultValue></option>
                                     @foreach ($estudiantes as $estudiante)
                                         <option value="{{ $estudiante->id }}">{{ $estudiante->nombre }}

@@ -7,10 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SIAP</title>
     <!-- BOOTSTRAP -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
-   
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
+    </script>
+
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,8 +35,7 @@
                             @csrf
                             {{ method_field('PATCH') }}
                             <label class="label"><b>Código</b></label>
-                            <a class=" text-dark"
-                                href="{{ App\Models\Proyecto::crearCodigo($proyecto) }}"></a>
+                            <a id = "cod "class=" text-dark" href="{{ App\Models\Proyecto::crearCodigo($proyecto) }}"></a>
                             <label id="codigo" name="codigo">{{ $proyecto->codigo }} </label>
 
                             <div class="form-group">
@@ -40,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Modalidad</b></label>
-                                <select class="form-control" id="modalidad" name="modalidad">
+                                <select class="form-select" id="modalidad" name="modalidad">
                                     <option defaultValue>{{ $proyecto->modalidad }}</option>
                                     <option value="Monografia">Monografia</option>
                                     <option value="Práctica">Práctica</option>
@@ -67,7 +72,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Estado</b></label>
-                                <select class="form-control" id="estado" name="estado">
+                                <select class="form-selectl" id="estado" name="estado" onchange="carg(this);">
                                     <option defaultValue>{{ $proyecto->estado }}</option>
                                     <option value="Aprobado">Aprobado</option>
                                     <option value="Rechazado">Rechazado</option>
@@ -78,7 +83,7 @@
 
                             <div class="form-group">
                                 <label class="label"><b>Director</b></label>
-                                <select class="form-control" name="id_director" id="id_director">
+                                <select class="form-select" name="id_director" id="id_director">
                                     @foreach ($docentes as $docente)
                                         @if ($proyecto->id_director == $docente->id)
                                             <option selected value="{{ $docente->id }}">{{ $docente->nombre }}
@@ -91,7 +96,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Evaluador</b></label>
-                                <select class="form-control" name="id_evaluador" id="id_evaluador">
+                                <select class="form-select" name="id_evaluador" id="id_evaluador">
                                     @foreach ($docentes as $docente)
                                         @if ($proyecto->id_evaluador == $docente->id)
                                             <option selected value="{{ $docente->id }}">{{ $docente->nombre }}
@@ -122,5 +127,29 @@
     </div>
 
 </body>
+
+<script>
+    var director = document.getElementById('id_director');
+    var evaluador = document.getElementById('id_evaluador');
+    var codigo = document.getElementById('codigo');
+    var cod = document.getElementById('cod');
+
+    function carg(elemento) {
+
+        d = elemento.value;
+
+        if (d == "Rechazado") {
+            director.disabled = true;
+            evaluador.disabled = true;
+            codigo.value = NULL;
+            cod.value = NULL;
+
+        } else if (d == "Aprobado") {
+            director.disabled = false;
+            evaluador.disabled = false;
+        }
+    }
+</script>
+
 
 </html>

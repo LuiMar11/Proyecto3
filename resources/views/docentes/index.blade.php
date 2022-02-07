@@ -11,13 +11,13 @@
                         <h3>Lista Docentes</h3>
                         @can('estudiantes.create')
                             <a class="btn btn-success float-right " style="background-color: #0dac54;"
-                                href="{{ route('estudiantes.create') }}"><i class="fas fa-user-plus"></i></a>
+                                href="{{ route('docentes.create') }}"><i class="fas fa-user-plus"></i></a>
                         @endcan
 
                         <br><br>
                         <div class="row justify-content-center">
                             <div class="col-md-8">
-                                <form action="{{ route('estudiantes.index') }}" method="GET">
+                                <form action="{{ route('docentes.index') }}" method="GET">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -41,7 +41,7 @@
                                 <th>Apellidos</th>
                                 <th>Género</th>
                                 <th>Email</th>
-                                <th>Nivel Educativo</th>
+                                <th>Temas</th>
                                 <th>Contratación</th>
                                 <th>Información</th>
                                 <th></th>

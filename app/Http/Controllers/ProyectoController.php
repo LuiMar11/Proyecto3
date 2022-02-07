@@ -70,6 +70,7 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
+
         $proyecto = request()->except('_token');
         Proyecto::insert($proyecto);
         Alert::success('Modalidad de grado inscrita');
@@ -100,7 +101,7 @@ class ProyectoController extends Controller
     {
         $docentes = Docente::all();
         $proyecto = Proyecto::findOrFail($id);
-        return view('proyectos.edit', compact('proyecto','docentes'));
+        return view('proyectos.edit', compact('proyecto', 'docentes'));
     }
 
     /**

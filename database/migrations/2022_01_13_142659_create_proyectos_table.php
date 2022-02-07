@@ -17,7 +17,7 @@ class CreateProyectosTable extends Migration
             
             $table->increments('id');
             $table->string('codigo')->nullable();
-            $table->text('titulo');
+            $table->string('titulo')->nullable()->unique();
             $table->string('modalidad');
             $table->date('acta')->nullable();
             $table->string('estado')->nullable();
@@ -26,9 +26,9 @@ class CreateProyectosTable extends Migration
             $table->text('observaciones')->nullable();
             $table->unsignedInteger('id_director')->nullable();
             $table->unsignedInteger('id_evaluador')->nullable();
-            $table->unsignedInteger('id_estudiante1')->nullable();
-            $table->unsignedInteger('id_estudiante2')->nullable();
-            $table->unsignedInteger('id_estudiante3')->nullable();
+            $table->string('id_estudiante1')->nullable()->unique();
+            $table->string('id_estudiante2')->nullable()->unique();
+            $table->string('id_estudiante3')->nullable()->unique();
 
             $table->foreign('id_director')
                 ->references('id')
@@ -43,20 +43,20 @@ class CreateProyectosTable extends Migration
                 ->onDelete('set null');
 
             $table->foreign('id_estudiante1')
-                ->references('id')
+                ->references('cedula')
                 ->on('estudiantes')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
 
             $table->foreign('id_estudiante2')
-                ->references('id')
+                ->references('cedula')
                 ->on('estudiantes')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
 
 
             $table->foreign('id_estudiante3')
-                ->references('id')
+                ->references('cedula')
                 ->on('estudiantes')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
