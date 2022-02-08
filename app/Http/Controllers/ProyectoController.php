@@ -70,10 +70,19 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-
         $proyecto = request()->except('_token');
-        Proyecto::insert($proyecto);
-        Alert::success('Modalidad de grado inscrita');
+
+        if ($request->estado == "Rechazado") {
+            $request->codigo = null;
+            Proyecto::insert($proyecto);
+        }
+        if (Proyecto::where('titulo', $request->titulo)->exists()) {
+            Alert::warning('El titulo ya existe');
+        } else {
+            Proyecto::insert($proyecto);
+            Alert::success('Modalidad de grado inscrita');
+        }
+
         return redirect('proyectos');
     }
 
@@ -100,8 +109,9 @@ class ProyectoController extends Controller
     public function edit($id)
     {
         $docentes = Docente::all();
+        $estudiantes = Estudiante::all();
         $proyecto = Proyecto::findOrFail($id);
-        return view('proyectos.edit', compact('proyecto', 'docentes'));
+        return view('proyectos.edit', compact('proyecto', 'docentes','estudiantes'));
     }
 
     /**

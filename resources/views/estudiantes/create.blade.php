@@ -33,11 +33,11 @@
                             </div>
                             <div class="form-group">
                                 <label class="label" for="email"><b>Nombres</b></label>
-                                <input id="name" name="nombre" type="text" class="form-control">
+                                <input id="name" name="nombre" type="text" class="form-control" onkeyup="this.value = this.value.toUpperCase();">
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Apellidos</b></label>
-                                <input id="apellido" name="apellido" type="text" class="form-control">
+                                <input id="apellido" name="apellido" type="text" class="form-control" onkeyup="this.value = this.value.toUpperCase();">
                             </div>
                             <div class="form-group">
                                 <label class="label" for="genero"><b>Género</b></label>

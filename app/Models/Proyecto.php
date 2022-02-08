@@ -32,7 +32,7 @@ class Proyecto extends Model
     public static function crearCodigo($proyecto)
     {
         $fecha = Carbon::createFromDate($proyecto->inicio)->format('Ymd');
-      
+
         if ($proyecto->modalidad == 'Monografia') {
             $modalidad = 'M';
         } elseif ($proyecto->modalidad == 'Práctica') {
@@ -48,6 +48,8 @@ class Proyecto extends Model
         }
 
         $proyecto->codigo = $fecha . $modalidad . $proyecto->id;
+
+
         $proyecto->save();
     }
 }

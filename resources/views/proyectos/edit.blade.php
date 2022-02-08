@@ -23,7 +23,10 @@
     <link rel="shortcut icon" href="{{ asset('img/manzana.png') }}">
 </head>
 
-<body>
+<body style=" 
+background-image           : url('https://noticias.canaltro.com/wp-content/uploads/2021/07/IMG-20200815-WA0004.jpg');
+ background-position: center center;
+ background-size: cover;">
     <div class="container">
         <br>
         <div class="row justify-content-center">
@@ -35,13 +38,56 @@
                             @csrf
                             {{ method_field('PATCH') }}
                             <label class="label"><b>Código</b></label>
-                            <a id = "cod "class=" text-dark" href="{{ App\Models\Proyecto::crearCodigo($proyecto) }}"></a>
+                            <a id="cod " class=" text-dark"
+                                href="{{ App\Models\Proyecto::crearCodigo($proyecto) }}"></a>
                             <label id="codigo" name="codigo">{{ $proyecto->codigo }} </label>
 
                             <div class="form-group">
                                 <label class="label"><b>Titulo</b></label>
                                 <input id="titulo" name="titulo" type="text" class="form-control"
                                     value="{{ $proyecto->titulo }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="label"><b>Nombres y Apellidos Estudiante 1</b></label>
+                                <select class="form-select" name="id_estudiante1" id="id_estudiante1">
+                                    <option defaultValue></option>
+                                    @foreach ($estudiantes as $estudiante)
+                                    @if ($proyecto->id_estudiante1 == $estudiante->id)
+                                    <option selected value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
+                                        {{ $estudiante->apellido }}</option>
+                                @endif
+                                        <option value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
+                                            {{ $estudiante->apellido }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="label"><b>Nombres y Apellidos Estudiante 2</b></label>
+                                <select class="form-select" name="id_estudiante2" id="id_estudiante2">
+                                    <option defaultValue></option>
+                                    @foreach ($estudiantes as $estudiante)
+                                    @if ($proyecto->id_estudiante2 == $estudiante->id)
+                                    <option selected value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
+                                        {{ $estudiante->apellido }}</option>
+                                @endif
+                                        <option value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
+                                            {{ $estudiante->apellido }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="label"><b>Nombres y Apellidos Estudiante 3</b></label>
+                                <select class="form-select" name="id_estudiante2" id="id_estudiante2">
+                                    <option defaultValue></option>
+                                    @foreach ($estudiantes as $estudiante)
+                                    @if ($proyecto->id_estudiante2 == $estudiante->id)
+                                    <option selected value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
+                                        {{ $estudiante->apellido }}</option>
+                                @endif
+                                        <option value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
+                                            {{ $estudiante->apellido }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Modalidad</b></label>
@@ -56,7 +102,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="label"><b>Fecha Acta Inicio</b></label>
+                                <label class="label"><b>Fecha Acta (Aceptado o Rechazado)</b></label>
                                 <input id="acta" name="acta" type="date" class="form-control"
                                     value="{{ $proyecto->acta }}">
                             </div>
@@ -72,7 +118,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Estado</b></label>
-                                <select class="form-selectl" id="estado" name="estado" onchange="carg(this);">
+                                <select class="form-select" id="estado" name="estado" onchange="carg(this);">
                                     <option defaultValue>{{ $proyecto->estado }}</option>
                                     <option value="Aprobado">Aprobado</option>
                                     <option value="Rechazado">Rechazado</option>
@@ -84,6 +130,7 @@
                             <div class="form-group">
                                 <label class="label"><b>Director</b></label>
                                 <select class="form-select" name="id_director" id="id_director">
+                                    <option defaultValue></option>
                                     @foreach ($docentes as $docente)
                                         @if ($proyecto->id_director == $docente->id)
                                             <option selected value="{{ $docente->id }}">{{ $docente->nombre }}
@@ -97,6 +144,7 @@
                             <div class="form-group">
                                 <label class="label"><b>Evaluador</b></label>
                                 <select class="form-select" name="id_evaluador" id="id_evaluador">
+                                    <option defaultValue></option>
                                     @foreach ($docentes as $docente)
                                         @if ($proyecto->id_evaluador == $docente->id)
                                             <option selected value="{{ $docente->id }}">{{ $docente->nombre }}
@@ -131,8 +179,6 @@
 <script>
     var director = document.getElementById('id_director');
     var evaluador = document.getElementById('id_evaluador');
-    var codigo = document.getElementById('codigo');
-    var cod = document.getElementById('cod');
 
     function carg(elemento) {
 
@@ -141,8 +187,6 @@
         if (d == "Rechazado") {
             director.disabled = true;
             evaluador.disabled = true;
-            codigo.value = NULL;
-            cod.value = NULL;
 
         } else if (d == "Aprobado") {
             director.disabled = false;

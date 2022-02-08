@@ -34,11 +34,11 @@
                             </div>
                             <div class="form-group">
                                 <label class="label" for="email"><b>Nombres</b></label>
-                                <input id="nombre" name="nombre" type="text" class="form-control" value="{{ $estudiante->nombre }}">
+                                <input id="nombre" name="nombre" type="text" class="form-control" value="{{ $estudiante->nombre }}" onkeyup="this.value = this.value.toUpperCase();">
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Apellidos</b></label>
-                                <input id="apellido" name="apellido" type="text" class="form-control" value="{{ $estudiante->apellido }}">
+                                <input id="apellido" name="apellido" type="text" class="form-control" value="{{ $estudiante->apellido }}" onkeyup="this.value = this.value.toUpperCase();">
                             </div>
                             <div class="form-group">
                                 <label class="label" for="genero"><b>Género</b></label>
