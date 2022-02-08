@@ -24,7 +24,7 @@
                 @foreach ($proyectos as $proyecto)
                     <tr>
                         <td>
-                            <div class="card">
+                            <div class="card border-success mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Código: {{ $proyecto->codigo }}</h5>
                                     <b>Titulo:</b> {{ $proyecto->titulo }} <br>

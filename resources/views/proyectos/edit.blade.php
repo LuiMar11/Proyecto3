@@ -102,6 +102,11 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label class="label"><b>Empresa</b></label>
+                                <input id="empresa" name="empresa" type="text" class="form-control"
+                                    value="{{ $proyecto->empresa }}">
+                            </div>
+                            <div class="form-group">
                                 <label class="label"><b>Fecha Acta (Aceptado o Rechazado)</b></label>
                                 <input id="acta" name="acta" type="date" class="form-control"
                                     value="{{ $proyecto->acta }}">

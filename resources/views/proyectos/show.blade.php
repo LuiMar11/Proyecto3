@@ -35,6 +35,9 @@
                         <label><b>Modalidad:</b></label>
                         <label id="modalidad">{{ $proyecto->modalidad }}</label>
                         <br>
+                        <label><b>Empresa:</b></label>
+                        <label id="empresa">{{ $proyecto->empresa }}</label>
+                        <br>
                         <label><b>Fecha Acta Inicio:</b></label>
                         <label id="acta">{{ $proyecto->acta }}</label>
                         <br>

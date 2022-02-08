@@ -31,8 +31,9 @@ class PdfController extends Controller
     function imprimir(Request $request)
     {
         $fecha = $request->get('fecha');
+        
         //$proyectos = Proyecto::all()->where('acta', $fecha);
-
+        
         $proyectos = DB::table('proyectos')
             ->where('acta', 'LIKE', '%' . $fecha . '%')
             ->orWhere('inicio', 'LIKE', '%' . $fecha . '%')

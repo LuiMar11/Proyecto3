@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Docente;
 use App\Models\Proyecto;
+use App\Models\Estudiante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -74,7 +75,7 @@ class DocenteController extends Controller
     {
         $docente = Docente::findOrFail($id);
         $proyectos = Proyecto::all();
-        $estudiantes = Docente::all();
+        $estudiantes = Estudiante::all();
         return view('docentes.show', compact('docente', 'proyectos', 'estudiantes'));
     }
 

@@ -52,6 +52,10 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label class="label"><b>Empresa</b></label>
+                                <input id="empresa" name="empresa" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <label class="label"><b>Nombres y Apellidos Estudiante 1</b></label>
                                 <select class="form-select" name="id_estudiante1" id="id_estudiante1">
                                     <option defaultValue></option>
@@ -99,6 +103,7 @@
     var est1 = document.getElementById('id_estudiante1');
     var est2 = document.getElementById('id_estudiante2');
     var est3 = document.getElementById('id_estudiante3');
+    var emp = document.getElementById('empresa');
 
     function carg(elemento) {
         d = elemento.value;
@@ -107,26 +112,32 @@
             est1.disabled = false;
             est2.disabled = false;
             est3.disabled = true;
+            emp.disabled = true;
         } else if (d == "Práctica") {
             est1.disabled = false;
             est2.disabled = true;
             est3.disabled = true;
+            emp.disabled = false;
         } else if (d == "Emprendimiento") {
             est1.disabled = false;
             est2.disabled = false;
             est3.disabled = true;
+            emp.disabled = true;
         } else if (d == "Proyecto Investigación") {
             est1.disabled = false;
             est2.disabled = false;
             est3.disabled = false;
+            emp.disabled = true;
         } else if (d == "Desarrollo Tecnologico") {
             est1.disabled = false;
             est2.disabled = false;
             est3.disabled = false;
+            emp.disabled = true;
         } else if (d == "Seminario") {
             est1.disabled = false;
             est2.disabled = true;
             est3.disabled = true;
+            emp.disabled = true;
         }
     }
 </script>
