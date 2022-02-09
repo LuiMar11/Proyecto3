@@ -28,7 +28,7 @@
 
                                             <!-- Modal Header -->
                                             <div class="modal-header-center">
-                                                <h4 class="modal-title">Upload extendido de notas</h4>
+                                                <h4 class="modal-title">Upload pago</h4>
 
                                             </div>
                                             <!-- Modal body -->

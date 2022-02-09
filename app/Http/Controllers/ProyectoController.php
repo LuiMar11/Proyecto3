@@ -21,28 +21,13 @@ class ProyectoController extends Controller
     {
         $texto = $request->get('texto');
         $proyectos = DB::table('proyectos')
-            ->select(
-                'id',
-                'codigo',
-                'titulo',
-                'modalidad',
-                'id_estudiante1',
-                'id_estudiante2',
-                'id_estudiante3',
-                'id_director',
-                'id_evaluador',
-                'acta',
-                'estado',
-                'inicio',
-                'fin',
-                'observaciones'
-
-            )->where('titulo', 'LIKE', '%' . $texto . '%')
+            ->select("*")->where('titulo', 'LIKE', '%' . $texto . '%')
             ->orWhere('codigo', 'LIKE', '%' . $texto . '%')
             ->orWhere('modalidad', 'LIKE', '%' . $texto . '%')
             ->orWhere('acta', 'LIKE', '%' . $texto . '%')
             ->orWhere('estado', 'LIKE', '%' . $texto . '%')
             ->orWhere('inicio', 'LIKE', '%' . $texto . '%')
+            ->orderByDesc('id')
             ->paginate(10);
 
         $docentes = Docente::all();
@@ -71,11 +56,7 @@ class ProyectoController extends Controller
     public function store(Request $request)
     {
         $proyecto = request()->except('_token');
-
-        if ($request->estado == "Rechazado") {
-            $request->codigo = null;
-            Proyecto::insert($proyecto);
-        }
+       
         if (Proyecto::where('titulo', $request->titulo)->exists()) {
             Alert::warning('El titulo ya existe');
         } else {
@@ -111,7 +92,7 @@ class ProyectoController extends Controller
         $docentes = Docente::all();
         $estudiantes = Estudiante::all();
         $proyecto = Proyecto::findOrFail($id);
-        return view('proyectos.edit', compact('proyecto', 'docentes','estudiantes'));
+        return view('proyectos.edit', compact('proyecto', 'docentes', 'estudiantes'));
     }
 
     /**
