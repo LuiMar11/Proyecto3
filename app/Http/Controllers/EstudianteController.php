@@ -33,6 +33,7 @@ class EstudianteController extends Controller
             )->where('nombre', 'LIKE', '%' . $texto . '%')
             ->orWhere('apellido', 'LIKE', '%' . $texto . '%')
             ->orWhere('cedula', 'LIKE', '%' . $texto . '%')
+            ->orderByDesc('id')
             ->paginate(10);
 
         return view('estudiantes.index', compact('estudiantes'));

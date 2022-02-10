@@ -14,9 +14,6 @@ class Estudiante extends Model
         return $this->hasMany(Proyecto::class);
     }
 
-    public function documentos()
-    {
-        return $this->hasMany(Documentos::class,'cedula');
-    }
+
 
 }

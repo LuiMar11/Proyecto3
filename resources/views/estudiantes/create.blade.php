@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label class="label" for="genero"><b>Género</b></label>
                                 <select class="form-select" id="genero" name="genero">
-                                    <option defaultValue>---Género---</option>
+                                    <option defaultValue></option>
                                     <option value="Masculino">Masculino</option>
                                     <option value="Femenino">Femenino</option>
                                 </select>
@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label class="label" for="programa"><b>Programa</b></label>
                                 <select class="form-select" id="programa" name="programa">
-                                    <option defaultValue>---Programa Académico---</option>
+                                    <option defaultValue></option>
                                     <option value="Administración de Empresas">Administración de Empresas</option>
                                     <option value="Gestión Empresarial">Gestión Empresarial</option>
                                     <option value="Gestión Empresarial">Otro</option>

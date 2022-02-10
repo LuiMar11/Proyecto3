@@ -36,13 +36,14 @@
                             @csrf
 
                             <div class="form-group">
-                                <label class="label"><b>Titulo</b></label>
-                                <input id="titulo" name="titulo" type="text" class="form-control">
+                                <label class="label"><b>Titulo</b></label><br>
+                                <textarea id="titulo" name="titulo" cols="45" rows="5"> </textarea>
+                            
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Modalidad</b></label>
-                                <select class="form-select" id="modalidad" name="modalidad" onchange="carg(this);">
-                                    <option defaultValue>---Modalidad---</option>
+                                <select class="form-select" id="modalidad" name="modalidad" onchange="carg(this);" required>
+                                    <option defaultValue></option>
                                     <option value="Monografia">Monografia</option>
                                     <option value="Práctica">Práctica</option>
                                     <option value="Emprendimiento">Emprendimiento</option>

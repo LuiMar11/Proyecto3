@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label class="label" for="genero"><b>Género</b></label>
                             <select class="form-select" id="genero" name="genero">
-                                <option defaultValue>---Género---</option>
+                                <option defaultValue></option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                             </select>
@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <label class="label" for="contratacion"><b>Contratación</b></label>
                             <select class="form-select" id="contratacion" name="contratacion">
-                                <option defaultValue>---Contratación---</option>
+                                <option defaultValue></option>
                                 <option value="Planta">Planta</option>
                                 <option value="Tiempo Completo">Tiempo Completo</option>
                                 <option value="Medio Tiempo">Medio Tiempo</option>

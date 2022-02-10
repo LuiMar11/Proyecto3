@@ -38,24 +38,32 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                             @csrf
                             {{ method_field('PATCH') }}
                             <label class="label"><b>Código</b></label>
-                            <a id="cod " class=" text-dark"
-                                href="{{ App\Models\Proyecto::crearCodigo($proyecto) }}"></a>
-                            <label id="codigo" name="codigo">{{ $proyecto->codigo }} </label>
+
+
+                            @if ($proyecto->estado == 'Rechazado')
+                                <input type="text" id="codigo" name="codigo" value="{{ $proyecto->codigo }}">
+
+                            @else
+                                <a id="cod " class=" text-dark"
+                                    href="{{ App\Models\Proyecto::crearCodigo($proyecto) }}"></a>
+                                <input type="text" id="codigo" name="codigo" value=" {{ $proyecto->codigo }}"
+                                    disabled>
+                            @endif
 
                             <div class="form-group">
-                                <label class="label"><b>Titulo</b></label>
-                                <input id="titulo" name="titulo" type="text" class="form-control"
-                                    value="{{ $proyecto->titulo }}">
+                                <label class="label"><b>Titulo</b></label> <br>
+                                <textarea id="titulo" name="titulo" cols="45" rows="5">{{ $proyecto->titulo }} </textarea>
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Nombres y Apellidos Estudiante 1</b></label>
                                 <select class="form-select" name="id_estudiante1" id="id_estudiante1">
                                     <option defaultValue></option>
                                     @foreach ($estudiantes as $estudiante)
-                                    @if ($proyecto->id_estudiante1 == $estudiante->id)
-                                    <option selected value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
-                                        {{ $estudiante->apellido }}</option>
-                                @endif
+                                        @if ($proyecto->id_estudiante1 == $estudiante->id)
+                                            <option selected value="{{ $estudiante->id }}">
+                                                {{ $estudiante->nombre }}
+                                                {{ $estudiante->apellido }}</option>
+                                        @endif
                                         <option value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
                                             {{ $estudiante->apellido }}</option>
                                     @endforeach
@@ -66,10 +74,11 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                                 <select class="form-select" name="id_estudiante2" id="id_estudiante2">
                                     <option defaultValue></option>
                                     @foreach ($estudiantes as $estudiante)
-                                    @if ($proyecto->id_estudiante2 == $estudiante->id)
-                                    <option selected value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
-                                        {{ $estudiante->apellido }}</option>
-                                @endif
+                                        @if ($proyecto->id_estudiante2 == $estudiante->id)
+                                            <option selected value="{{ $estudiante->id }}">
+                                                {{ $estudiante->nombre }}
+                                                {{ $estudiante->apellido }}</option>
+                                        @endif
                                         <option value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
                                             {{ $estudiante->apellido }}</option>
                                     @endforeach
@@ -80,10 +89,11 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                                 <select class="form-select" name="id_estudiante2" id="id_estudiante2">
                                     <option defaultValue></option>
                                     @foreach ($estudiantes as $estudiante)
-                                    @if ($proyecto->id_estudiante2 == $estudiante->id)
-                                    <option selected value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
-                                        {{ $estudiante->apellido }}</option>
-                                @endif
+                                        @if ($proyecto->id_estudiante2 == $estudiante->id)
+                                            <option selected value="{{ $estudiante->id }}">
+                                                {{ $estudiante->nombre }}
+                                                {{ $estudiante->apellido }}</option>
+                                        @endif
                                         <option value="{{ $estudiante->id }}">{{ $estudiante->nombre }}
                                             {{ $estudiante->apellido }}</option>
                                     @endforeach
