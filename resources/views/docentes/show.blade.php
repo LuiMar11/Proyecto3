@@ -19,12 +19,14 @@
                                         <th>Fecha inicio</th>
                                         <th>Estado</th>
                                         <th>Rol en el proyecto</th>
+                                        <th></th>
                                         <th>Estudiantes</th>
                                         <th></th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            @foreach ($proyectos as $proyecto)
+                                        @foreach ($proyectos as $proyecto)
+                                            <tr>
+
                                                 @if (($proyecto->id_director == $docente->id) | ($proyecto->id_evaluador == $docente->id))
                                                     <td>{{ $proyecto->codigo }}</td>
                                                     <td>{{ $proyecto->titulo }}</td>
@@ -32,31 +34,27 @@
                                                     <td>{{ $proyecto->acta }}</td>
                                                     <td>{{ $proyecto->inicia }}</td>
                                                     <td>{{ $proyecto->estado }}</td>
+                                                   
+                                                    @if ($proyecto->id_director == $docente->id)
+                                                        <td>Director</td>
+                                                    @else
+                                                        <td>Evaluador</td>
+                                                    @endif
+
+                                                    @if (($proyecto->id_estudiante1 != null) | ($proyecto->id_estudiante2 != null) | $proyecto->id_estudiante3)
+                                                        @foreach ($estudiantes as $estudiante)
+
+                                                            @if (($proyecto->id_estudiante1 == $estudiante->id) | ($proyecto->id_estudiante2 == $estudiante->id) | ($proyecto->id_estudiante3 == $estudiante->id))
+                                                                <td> - {{ $estudiante->nombre }}
+                                                                    {{ $estudiante->apellido }}</td>
+                                                            @endif
+
+                                                        @endforeach
+
+                                                    @endif
                                                 @endif
-
-
-                                                @if ($proyecto->id_director == $docente->id)
-                                                    <td>Director</td>
-                                                @else
-                                                    <td>Evaluador</td>
-                                                @endif
-                                                
-                                                @if (($proyecto->id_estudiante1 != null) | ($proyecto->id_estudiante2 != null) | $proyecto->id_estudiante3)
-
-                                                    @foreach ($estudiantes as $estudiante)
-
-                                                        @if (($proyecto->id_estudiante1 == $estudiante->id) | ($proyecto->id_estudiante2 == $estudiante->id) | ($proyecto->id_estudiante3 == $estudiante->id))
-                                                            <td> - {{ $estudiante->nombre }}
-                                                                {{ $estudiante->apellido }}</td>
-                                                            <br>
-                                                        @endif
-
-                                                    @endforeach
-
-                                                @endif
-                                            @endforeach
-
-                                        </tr>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

@@ -62,11 +62,6 @@
 
                         @endcan
 
-
-
-
-
-
                         <div class="card-body justify-content-center">
 
                             <div class="table-responsive">
@@ -75,36 +70,36 @@
                                         <th>Código proyecto</th>
                                         <th>Titulo proyecto</th>
                                         <th>Modalidad</th>
-                                        <th>Fecha Inicio</th>
+                                        <th>Fecha aprobación</th>
                                         <th>Estado</th>
+                                        <th>Fecha inicio</th>
                                         <th>Director</th>
                                         <th>Evaluador</th>
+                                        
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            @foreach ($proyectos as $proyecto)
-                                                @if (($proyecto->id_estudiante1 == $estudiante->id) | ($proyecto->id_estudiante2 == $estudiante->id) | ($proyecto->id_estudiante3 == $estudiante->id))
+                                        @foreach ($proyectos as $proyecto)
+                                            <tr>
+                                                @if (($estudiante->id==$proyecto->id_estudiante1) | ($estudiante->id == $proyecto->id_estudiante2 ) | ($estudiante->id == $proyecto->id_estudiante3))
                                                     <td>{{ $proyecto->codigo }}</td>
                                                     <td>{{ $proyecto->titulo }}</td>
                                                     <td> {{ $proyecto->modalidad }} </td>
-                                                    <td>{{ $proyecto->inicio }}</td>
+                                                    <td>{{ $proyecto->acta }}</td>
                                                     <td>{{ $proyecto->estado }}</td>
+                                                    <td>{{ $proyecto->inicio }}</td>
                                                 @endif
 
                                                 @foreach ($docentes as $docente)
-                                                    @if ($proyecto->id_director == $docente->id)
+                                                    @if ($docente->id == $proyecto->id_director)
                                                         <td>{{ $docente->nombre }} {{ $docente->apellido }}</td>
                                                     @endif
-
-                                                    @if ($proyecto->id_evaluador == $docente->id)
+                                                    @if ($docente->id == $proyecto->id_evaluador)
                                                         <td>{{ $docente->nombre }} {{ $docente->apellido }}</td>
                                                     @endif
-
                                                 @endforeach
-
-                                            @endforeach
-
-                                        </tr>
+                                                
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
