@@ -40,10 +40,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
+
 <body style=" 
 background-image           : url('https://noticias.canaltro.com/wp-content/uploads/2021/07/IMG-20200815-WA0004.jpg');
  background-position: center center;
  background-size: cover;">
+    <style>
+        th,
+        td {
+            font-size: 12px;
+        }
+
+    </style>
     @include('sweetalert::alert')
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #53cf48;">
@@ -123,7 +131,7 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                 document.getElementById('logout-form').submit();">
+                                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </a>
 

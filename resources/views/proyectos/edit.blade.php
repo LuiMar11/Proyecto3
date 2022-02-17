@@ -117,7 +117,7 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                                     value="{{ $proyecto->empresa }}">
                             </div>
                             <div class="form-group">
-                                <label class="label"><b>Fecha Acta (Aceptado o Rechazado)</b></label>
+                                <label class="label"><b>Fecha inscripción (Aceptado o Rechazado)</b></label>
                                 <input id="acta" name="acta" type="date" class="form-control"
                                     value="{{ $proyecto->acta }}">
                             </div>
@@ -135,10 +135,11 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                                 <label class="label"><b>Estado</b></label>
                                 <select class="form-select" id="estado" name="estado" onchange="carg(this);">
                                     <option defaultValue>{{ $proyecto->estado }}</option>
-                                    <option value="Aprobado">Aprobado</option>
-                                    <option value="Rechazado">Rechazado</option>
-                                    <option value="Cancelado">Cancelado</option>
-                                    <option value="Prorroga">Prorroga</option>
+                                    <option value="Inscripcion Aprobada">Inscripción Aprobada</option>
+                                    <option value="Inscripcion Rechazada">Inscripción Rechazada</option>
+                                    <option value="Inscripcion Cancelada">Inscripción Cancelada</option>
+                                    <option value="Prorroga">Prórroga</option>
+                                    <option value="Terminado">Terminado</option> 
                                 </select>
                             </div>
 

@@ -20,7 +20,7 @@ class Proyecto extends Model
         return $this->belongsTo(Docente::class, 'id_evaluador');
     }
 
-    public function estudiantes()
+    /* public function estudiantes()
     {
         return $this->belongsTo(Estudiante::class, [
             'id_estudiante1',
@@ -28,7 +28,7 @@ class Proyecto extends Model
             'id_estudiante3',
         ]);
     }
-
+ */
     public static function crearCodigo($proyecto)
     {
         $fecha = Carbon::createFromDate($proyecto->inicio)->format('Ymd');

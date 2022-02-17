@@ -9,10 +9,10 @@ class Estudiante extends Model
 {
     use HasFactory;
 
-    public function proyecto()
+   /*  public function proyecto()
     {
         return $this->hasMany(Proyecto::class);
-    }
+    } */
 
 
 

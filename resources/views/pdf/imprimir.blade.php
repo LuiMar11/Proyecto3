@@ -48,7 +48,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Logo_UTS.JPG" width="90" height="70">
+                    <img src="https://www.uts.edu.co/sitio/wp-content/uploads/2021/02/Logo-UTS-1.png" width="90" height="70">
                 </div>
                 <div class="col text-center">
                     <p>SOPORTE AL SISTEMA INTEGRADO DE GESTIÓN</p>

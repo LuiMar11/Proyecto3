@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <div class="container-fluid">
         <br>
         <div class="row">
@@ -60,7 +59,7 @@
                                         <th>Estudiantes</th>
                                         <th>Director</th>
                                         <th>Evaluador</th>
-                                        <th>Fecha Acta Aceptación</th>
+                                        <th>Fecha inscripción</th>
                                         <th>Estado Proyecto</th>
                                         <th>Fecha Inicio</th>
                                         <th>Fecha Finalización</th>
@@ -69,6 +68,7 @@
                                         <th></th>
                                         <th></th>
                                     </thead>
+
                                     <tbody class="text-center">
 
                                         @if (count($proyectos) <= 0)
@@ -93,17 +93,13 @@
                                                     <td>
 
                                                         @if (($proyecto->id_estudiante1 != null) | ($proyecto->id_estudiante2 != null) | $proyecto->id_estudiante3)
-
                                                             @foreach ($estudiantes as $estudiante)
-
                                                                 @if (($proyecto->id_estudiante1 == $estudiante->id) | ($proyecto->id_estudiante2 == $estudiante->id) | ($proyecto->id_estudiante3 == $estudiante->id))
                                                                     - {{ $estudiante->nombre }}
                                                                     {{ $estudiante->apellido }}
                                                                     <br>
                                                                 @endif
-
                                                             @endforeach
-
                                                         @endif
 
                                                     </td>
@@ -162,6 +158,7 @@
                                         @endif
 
                                     </tbody>
+
                                 </table>
                                 <div class="d-flex justify-content-center">
                                     {{ $proyectos->links() }}
