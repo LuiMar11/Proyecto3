@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Docente;
 use App\Models\Estudiante;
 use Database\Seeders\EstudianteSeeder;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -53,7 +54,8 @@ class ProyectoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+     public function store(Request $request)
     {
         $proyecto = request()->except('_token');
        
@@ -66,6 +68,8 @@ class ProyectoController extends Controller
 
         return redirect('proyectos');
     }
+
+   
 
     /**
      * Display the specified resource.

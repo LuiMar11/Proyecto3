@@ -37,7 +37,8 @@ class PdfController extends Controller
         $proyectos = DB::table('proyectos')
             ->where('acta', 'LIKE', '%' . $fecha . '%')
             ->orWhere('inicio', 'LIKE', '%' . $fecha . '%')
-            ->orWhere('fin', 'LIKE', '%' . $fecha . '%')->get();
+            ->orWhere('fin', 'LIKE', '%' . $fecha . '%')
+            ->orderBy('modalidad')->get();
 
         $docentes = Docente::all();
         $estudiantes = Estudiante::all();

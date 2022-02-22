@@ -138,6 +138,26 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                                     <option value="Inscripcion Aprobada">Inscripción Aprobada</option>
                                     <option value="Inscripcion Rechazada">Inscripción Rechazada</option>
                                     <option value="Inscripcion Cancelada">Inscripción Cancelada</option>
+                                    
+                                    <option value="FDC124 Aprobada">FDC124 Aprobada</option>
+                                    <option value="FDC124 No aprobada">FDC124 Rechazada</option>
+                                    <option value="FDC124 Cancelada">FDC124 Cancelada</option>
+                                    
+                                    <option value="FDC125 Aprobada">FDC125 Aprobada</option>
+                                    <option value="FDC125 No aprobada">FDC125 Rechazada</option>
+                                    <option value="FDC125 Cancelada">FDC125 Cancelada</option>
+                                    
+                                    <option value="FDC126 Aprobada">FDC126 Aprobada</option>
+                                    <option value="FDC126 No aprobada">FDC126 Rechazada</option>
+                                          
+                                    <option value="FDC127 Aprobada">FDC127 Aprobada</option>
+                                    <option value="FDC127 No aprobada">FDC127 Rechazada</option>
+                                    <option value="FDC127 Cancelada">FDC127 Cancelada</option>
+
+                                    <option value="FDC128-129 Aprobada">FDC128-129 Aprobada</option>
+                                    <option value="FDC128-129 No aprobada">FDC128-129 Rechazada</option>
+                                    <option value="FDC128-129 Cancelada">FDC128-129 Cancelada</option>
+
                                     <option value="Prorroga">Prórroga</option>
                                     <option value="Terminado">Terminado</option> 
                                 </select>

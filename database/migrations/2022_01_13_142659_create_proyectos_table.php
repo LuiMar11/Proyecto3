@@ -27,9 +27,9 @@ class CreateProyectosTable extends Migration
             $table->text('observaciones')->nullable();
             $table->unsignedInteger('id_director')->nullable();
             $table->unsignedInteger('id_evaluador')->nullable();
-            $table->unsignedInteger('id_estudiante1')->nullable()->unique();
-            $table->unsignedInteger('id_estudiante2')->nullable()->unique();
-            $table->unsignedInteger('id_estudiante3')->nullable()->unique();
+            $table->unsignedInteger('id_estudiante1')->nullable();
+            $table->unsignedInteger('id_estudiante2')->nullable();
+            $table->unsignedInteger('id_estudiante3')->nullable();
 
             $table->foreign('id_director')
                 ->references('id')

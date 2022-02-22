@@ -84,19 +84,20 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                             <a class="nav-link text-white" href="{{ route('proyectos.index') }}">Lista
                                 Proyectos</a>
                         </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Documentos
-                                estudiantes
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{ route('documentos.notas') }}">Extendido de
-                                        notas</a></li>
-                                <li><a class="dropdown-item" href="{{ route('documentos.pagos') }}">Pagos</a></li>
-                            </ul>
-                        </li>
+                        @can('docentes.create')
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Documentos
+                                    estudiantes
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{{ route('documentos.notas') }}">Extendido de
+                                            notas</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('documentos.pagos') }}">Pagos</a></li>
+                                </ul>
+                            </li>
+                        @endcan
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('actas') }}">Actas</a>
                         </li>
@@ -131,7 +132,7 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                         document.getElementById('logout-form').submit();">
+                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </a>
 
