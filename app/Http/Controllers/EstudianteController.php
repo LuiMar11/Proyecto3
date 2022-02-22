@@ -58,7 +58,7 @@ class EstudianteController extends Controller
     public function store(Request $request)
     {
         $estudiante = request()->except('_token');
-        if ((Estudiante::where('cedula', $request->cedula)->exists())|Estudiante::where('email', $request->email)->exists()) {
+        if ((Estudiante::where('cedula', $request->cedula)->exists()) | Estudiante::where('email', $request->email)->exists()) {
             Alert::warning('El estudiante ya existe');
         } else {
             Estudiante::insert($estudiante);
@@ -76,8 +76,13 @@ class EstudianteController extends Controller
     public function show($id)
     {
         $estudiante = Estudiante::findOrFail($id);
-        $user = User::all()->where('email',$estudiante->email);
-        $proyectos = Proyecto::all()->where('id_estudiante1', $id);
+        $user = User::all()->where('email', $estudiante->email);
+        
+        $proyectos = DB::table('proyectos')->select('*')
+        ->where('id_estudiante1',$id)
+        ->orWhere('id_estudiante2',$id)
+        ->orWhere('id_estudiante3',$id)->get();
+
         $docentes = Docente::all();
         return view('estudiantes.show', compact('estudiante', 'user', 'proyectos', 'docentes'));
     }

@@ -55,21 +55,31 @@ class ProyectoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function store(Request $request)
+    public function store(Request $request)
     {
-        $proyecto = request()->except('_token');
-       
+        $proyecto = new Proyecto;
+        $estudiante1 = $request->get('id_estudiante1');
+        $estudiante2 = $request->get('id_estudiante2');
+        $estudiante3 = $request->get('id_estudiante1');
+
         if (Proyecto::where('titulo', $request->titulo)->exists()) {
             Alert::warning('El titulo ya existe');
         } else {
-            Proyecto::insert($proyecto);
+            $proyecto->titulo = $request->get('titulo');
+            $proyecto->modalidad = $request->get('modalidad');
+            $proyecto->empresa = $request->get('empresa');
+            $proyecto->id_estudiante1 = $estudiante1;
+            $proyecto->id_estudiante2 = $estudiante2;
+            $proyecto->id_estudiante3 = $estudiante3;
+            $proyecto->save();
+
             Alert::success('Modalidad de grado inscrita');
         }
 
         return redirect('proyectos');
     }
 
-   
+
 
     /**
      * Display the specified resource.
@@ -107,7 +117,7 @@ class ProyectoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
         $proyecto = request()->except('_token', '_method');
         Proyecto::where('id', '=', $id)->update($proyecto);
         //Alert::success('Se asigno código, director y evaluador al proyecto de grado');

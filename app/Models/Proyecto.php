@@ -52,4 +52,17 @@ class Proyecto extends Model
 
         $proyecto->save();
     }
+
+    public static function repetido($proyecto, $estudiante)
+    {
+        if (($proyecto->estado == 'Inscripcion Aprobada') & ($proyecto->id_estudiante1 == $estudiante)) {
+            $proyecto->observaciones = 'Uno de los estudiantes ya esta inscrito en una modalidad ';
+        } else if (($proyecto->estado == 'Inscripcion Aprobada') & ($proyecto->id_estudiante2 == $estudiante)) {
+            $proyecto->observaciones = 'Uno de los estudiantes ya esta inscrito en una modalidad ';
+        } else if (($proyecto->estado == 'Inscripcion Aprobada') & ($proyecto->id_estudiante3 == $estudiante)) {
+            $proyecto->observaciones = 'Uno de los estudiantes ya esta inscrito en una modalidad ';
+        }
+
+        $proyecto->save();
+    }
 }

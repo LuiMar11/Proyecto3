@@ -52,7 +52,8 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
 
                             <div class="form-group">
                                 <label class="label"><b>Titulo</b></label> <br>
-                                <textarea id="titulo" name="titulo" cols="45" rows="5">{{ $proyecto->titulo }} </textarea>
+                                <textarea id="titulo" name="titulo" cols="45"
+                                    rows="5">{{ $proyecto->titulo }} </textarea>
                             </div>
                             <div class="form-group">
                                 <label class="label"><b>Nombres y Apellidos Estudiante 1</b></label>
@@ -138,18 +139,18 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                                     <option value="Inscripcion Aprobada">Inscripción Aprobada</option>
                                     <option value="Inscripcion Rechazada">Inscripción Rechazada</option>
                                     <option value="Inscripcion Cancelada">Inscripción Cancelada</option>
-                                    
+
                                     <option value="FDC124 Aprobada">FDC124 Aprobada</option>
                                     <option value="FDC124 No aprobada">FDC124 Rechazada</option>
                                     <option value="FDC124 Cancelada">FDC124 Cancelada</option>
-                                    
+
                                     <option value="FDC125 Aprobada">FDC125 Aprobada</option>
                                     <option value="FDC125 No aprobada">FDC125 Rechazada</option>
                                     <option value="FDC125 Cancelada">FDC125 Cancelada</option>
-                                    
+
                                     <option value="FDC126 Aprobada">FDC126 Aprobada</option>
                                     <option value="FDC126 No aprobada">FDC126 Rechazada</option>
-                                          
+
                                     <option value="FDC127 Aprobada">FDC127 Aprobada</option>
                                     <option value="FDC127 No aprobada">FDC127 Rechazada</option>
                                     <option value="FDC127 Cancelada">FDC127 Cancelada</option>
@@ -159,7 +160,7 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
                                     <option value="FDC128-129 Cancelada">FDC128-129 Cancelada</option>
 
                                     <option value="Prorroga">Prórroga</option>
-                                    <option value="Terminado">Terminado</option> 
+                                    <option value="Terminado">Terminado</option>
                                 </select>
                             </div>
 
@@ -194,8 +195,10 @@ background-image           : url('https://noticias.canaltro.com/wp-content/uploa
 
                             <div class="form-group">
                                 <label class="label"><b>Observaciones:</b></label>
+
                                 <textarea class="form-control" name="observaciones" id="observaciones" cols="30"
                                     rows="10">{{ $proyecto->observaciones }}</textarea>
+
                             </div>
 
                             <div class="form-group d-flex justify-content-center mt-5">

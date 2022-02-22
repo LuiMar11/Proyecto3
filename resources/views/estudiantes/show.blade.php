@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -59,7 +58,6 @@
                                     </div>
                                 </div>
                             </form>
-
                         @endcan
 
                         <div class="card-body justify-content-center">
@@ -75,12 +73,12 @@
                                         <th>Fecha inicio</th>
                                         <th>Director</th>
                                         <th>Evaluador</th>
-                                        
+
                                     </thead>
                                     <tbody>
                                         @foreach ($proyectos as $proyecto)
                                             <tr>
-                                                @if (($estudiante->id==$proyecto->id_estudiante1) | ($estudiante->id == $proyecto->id_estudiante2 ) | ($estudiante->id == $proyecto->id_estudiante3))
+                                                @if (($estudiante->id == $proyecto->id_estudiante1)|($estudiante->id == $proyecto->id_estudiante2)|($estudiante->id == $proyecto->id_estudiante3))
                                                     <td>{{ $proyecto->codigo }}</td>
                                                     <td>{{ $proyecto->titulo }}</td>
                                                     <td> {{ $proyecto->modalidad }} </td>
@@ -97,7 +95,7 @@
                                                         <td>{{ $docente->nombre }} {{ $docente->apellido }}</td>
                                                     @endif
                                                 @endforeach
-                                                
+
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -109,5 +107,4 @@
             </div>
         </div>
     </div>
-
 @endsection
